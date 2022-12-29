@@ -1,0 +1,9 @@
+package kr.or.ddit.object;
+
+public class ObjectPlayground {
+	public static void main(String[] args) throws Exception {
+		String qualifiedName = "kr.or.ddit.object.Parent";
+		Class<?> type1 = Parent.class; 
+		Class<?> type2 = Class.forName(qualifiedName);
+	}
+}

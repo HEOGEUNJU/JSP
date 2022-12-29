@@ -1,0 +1,49 @@
+package kr.or.ddit.member.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.vo.MemberVO;
+
+public class MemberDAOImpl implements MemberDAO {
+
+	private Map<String , Statement> statementMap;
+	
+   @Override
+   public int insertMember(MemberVO member) {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+
+   @Override
+   public List<MemberVO> selectMemberList() {
+    
+   }
+
+   @Override
+   public MemberVO selectMember(String memId) {
+  
+   }
+
+   @Override
+   public int updateMember(MemberVO member) {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+   @Override
+   public int deleteMember(String memId) {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+
+
+}

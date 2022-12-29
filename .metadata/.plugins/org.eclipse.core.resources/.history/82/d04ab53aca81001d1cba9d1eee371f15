@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>11/cookieDesc.jsp</title>
+</head>
+<body>
+<h4>Cookie</h4>
+<pre>
+	session (server에 저장) vs cookie (client에 저장)
+		: http 의 stateless 특성으로 인해 커뮤니케이션 정보가 유지되지 않는 경우, 사용하는 저장소의 개념
+	
+	사용 단계
+	1. 쿠키 객체 생성(name, value)
+	2. 응답(헤더, set-cookie)에 포함시켜 전송
+	<%-- 
+ 		Cookie firstCookie = new Cookie("firstCookie", "firstValue");
+		response.addCookie(firstCookie);
+	--%> 
+	
+	3. 브라우저가 자기 저장소에 저장. 
+	4. 다음번 요청(헤더, cookie)을 통해 재전송
+	
+	5. 요청에 포함된 쿠키를 통해 상태를 복원.
+	<% 
+		Cookie[] cookies = request.getCookies();
+		Cookie finded = null;
+		for(Cookie tmp : cookies){
+			if("firstCookie".equals(tmp.getName())){
+				finded = tmp;
+				break;
+			}
+		}
+	%>
+</pre>
+</body>
+</html>

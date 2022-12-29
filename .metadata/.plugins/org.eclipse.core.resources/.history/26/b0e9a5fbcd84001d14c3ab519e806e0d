@@ -1,0 +1,36 @@
+package kr.or.ddit.member.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import kr.or.ddit.db.ConnectionFactory;
+
+public class AbstractJDBCDAO{
+	
+	public selectList(String sql) {
+		try(
+				Connection conn = makeConnection();
+				PreparedStatement pstmt = makePreparedStatement(conn, sql);
+		){
+			ResultSet rs = executeQuery(pstmt);
+
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+	
+	private Connection makeConnection() throws SQLException {
+		return ConnectionFactory.getConnection();
+	}
+	
+	private PreparedStatement makePreparedStatement(Connection conn, String sql) throws SQLException{
+		return conn.prepareStatement(sql);
+	}
+	
+	private ResultSet executeQuery(PreparedStatement pstmt) throws SQLException{
+		return pstmt.executeQuery();
+	}
+}

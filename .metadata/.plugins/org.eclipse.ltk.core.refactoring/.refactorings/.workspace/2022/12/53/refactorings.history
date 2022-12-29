@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 3 resources" deleteContents="false" description="Delete 3 resources" element1="/WebStudy02_MVN/src/main/webapp/WEB-INF/member" element2="/WebStudy02_MVN/src/main/webapp/WEB-INF/index.jsp" element3="/WebStudy02_MVN/src/main/webapp/WEB-INF/layout.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="3" stamp="1672103556287"/>
+</session>

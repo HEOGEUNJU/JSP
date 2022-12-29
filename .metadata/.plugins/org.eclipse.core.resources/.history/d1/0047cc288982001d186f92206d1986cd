@@ -1,0 +1,21 @@
+package kr.or.ddit.memo.dao;
+
+import java.util.List;
+
+import kr.or.ddit.vo.MemoVO;
+
+public class MemoBaseMemoDAOImpl implements MemoDao {
+
+	@Override
+	public List<MemoVO> selectMemoList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertMemo(MemoVO memo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

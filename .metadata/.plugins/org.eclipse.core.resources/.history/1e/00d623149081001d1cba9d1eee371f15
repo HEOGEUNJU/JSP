@@ -1,0 +1,16 @@
+package kr.or.ddit.servlet08;
+
+import java.util.Calendar;
+import static java.util.Calendar.*;
+
+public class CalenderWrapper {
+	private Calendar adaptee;
+	private int offset;
+	
+	public CalenderWrapper(Calendar adaptee) {
+		super();
+		this.adaptee = adaptee;
+		
+		adaptee.set(DAY_OF_MONTH, 1);
+	}
+}

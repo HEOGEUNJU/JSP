@@ -1,0 +1,57 @@
+package kr.or.ddit.servlet09;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
+
+import kr.or.ddit.vo.DataBasePropertyVO;
+
+@WebServlet("/12/property.do")
+public class DataBasePropertyControllerServlet extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//driver class loading :oracle.jdbc.driver.OracleDriver
+				//3단계
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				//4단계
+				String url ="jdbc:oracle:thin:@localhost:1521:xe";
+				String username = "MKJ93";
+				String password = "java";
+				try(
+					Connection conn = DriverManager.getConnection(url, username, password);
+					//5단계
+					Statement stmt =  conn.createStatement();
+				){
+					//6단계
+					StringBuffer sql = new StringBuffer();
+					sql.append(" SELECT property_name, Property_Value, Description ");
+					sql.append(" FROM DATABASE_PROPERTIES ");
+					ResultSet rs = stmt.executeQuery(sql.toString());
+					List<DataBasePropertyVO>list = new ArrayList<>();
+					PageContext.setAttribute("list", list);
+					//7단계
+					while(rs.next()) {
+						DataBasePropertyVO vo = new DataBasePropertyVO();
+						list.add(vo);
+						vo.setPropertyName(rs.getNString("property_name"));
+						vo.setPropertyValue(rs.getNString("property_value")) ;
+						vo.setDescription(rs.getNString("description")) ;
+					}
+					//8단계
+				}catch(SQLException e){	
+					throw new RuntimeException(e);
+				}
+	}
+}

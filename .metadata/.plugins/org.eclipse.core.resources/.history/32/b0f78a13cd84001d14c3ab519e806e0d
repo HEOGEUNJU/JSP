@@ -1,0 +1,12 @@
+package kr.or.ddit.member.dao;
+
+import java.sql.Connection;
+
+import kr.or.ddit.db.ConnectionFactory;
+
+public class AbstractJDBCDAO {
+	
+	private Connection makeConnection() throw SQLException {
+		return ConnectionFactory.getConnection();
+	}
+}

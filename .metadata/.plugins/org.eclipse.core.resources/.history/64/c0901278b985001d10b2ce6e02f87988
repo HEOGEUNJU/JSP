@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>member/memberForm.jsp</title>
+</head>
+<body>
+<form method="post">
+	<span>회원아이디 :</span><input type="text" name = "memId"  value=""/>
+	<span>회원비밀번호 :</span><input type="password" name = "memPass"  value=""/>
+	<span>회원명 :</span><input type="text" name = "memName"  value=""/>
+	<span>생일 :</span><input type="date" name = "memBir"  value=""/>
+	<span>짚 :</span><input type="text" name = "memZip  value=""/>
+	<span>주소1 :</span><input type="text" name = "memRegno1"  value=""/>
+	<span>주소2 :</span><input type="text" name = "memRegno2"  value=""/>
+</form>
+</body>
+</html>

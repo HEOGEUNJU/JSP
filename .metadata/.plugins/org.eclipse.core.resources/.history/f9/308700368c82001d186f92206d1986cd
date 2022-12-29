@@ -1,0 +1,80 @@
+package kr.or.ddit.memo.controller;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.or.ddit.memo.dao.FileSystemMemoDAOImpl;
+import kr.or.ddit.memo.dao.MemoBaseMemoDAOImpl;
+import kr.or.ddit.memo.dao.MemoDao;
+import kr.or.ddit.vo.MemoVO;
+
+@WebServlet("/memo")
+public class MemoControllerServlet extends HttpServlet{
+	
+	private MemoDao dao = MemoBaseMemoDAOImpl.getInstance();
+	
+//	컨트롤러 다섯가지 단계
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		1. 요청분석(리스트 메모 셀렉트)
+			String accept = req.getHeader("Accept");
+//		2. 모델확보
+			List<MemoVO> memoList = dao.selectMemoList();
+//		3. 모델공유
+			req.setAttribute("memoList", memoList);
+//		4. 뷰선택
+			String path = null;
+			if(accept.startsWith("*/*") || accept.toLowerCase().contains("html")) {
+		         path = "/06/memoView.jsp";
+		      } else if(accept.toLowerCase().contains("json")) {
+		    	  path = "/jsonView.do";
+		      } else if(accept.toLowerCase().contains("xml")){
+		    	  path = "/xmlView.do";
+		      }
+			System.out.println(path);
+//		5. 뷰로 이동
+			 req.getRequestDispatcher(path).forward(req, resp);
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		Post-Redirect-Get : PRG pattern
+		
+		MemoVO memo = getMemoFromRequest(req);
+		dao.insertMemo(memo);
+		
+		resp.sendRedirect(req.getContextPath()+"/memo");
+	}
+	private MemoVO getMemoFromRequest(HttpServletRequest req) throws UnsupportedEncodingException {
+		
+		req.setCharacterEncoding("utf-8");
+		MemoVO memo = new MemoVO();
+//		1. 폼에서 보내온 파라미터를 받아들인다.(작성자,등록자,내용,작성일을 만들어준다. )
+		String writer = req.getParameter("writer");
+		String date = req.getParameter("date");
+		String content = req.getParameter("content");
+//		2. 메모VO 속에 받아온 파라미터들을 set한다.
+		memo.setWriter(writer);
+		memo.setDate(date);
+		memo.setContent(content);
+//		3. 셋한 내용은 자동으로 넘어가게 된다.
+		
+		
+		
+		return memo;
+	}
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+}

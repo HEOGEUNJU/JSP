@@ -1,0 +1,56 @@
+package kr.or.ddit.login.controller;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
+
+/**
+ * 1. 검증에 통과하지 못했을 경우, 다시 로그인 폼으로 이동함.
+ * 2. 인증에 통과하지 못했을 겨우, 다시 로그인 폼으로 이동함.
+ *	- 비밀번호 오류 상태를 가정하고, 메시지 전달 -> alert 함수로 메시지 출력.
+ *	- 이전에 입력받은 아이디의 상태를 유지함.
+ * 3. 인증 완료시에 웰컴 페이지로 이동함.
+ */
+@WebServlet("/login/loginProcess.do")
+public class LoginProcessControllerServlet extends HttpServlet {
+	private boolean authenticate(String memId, String memPass) {
+		return memId.equals(memPass);
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		1. 필요한 파라미터 뽑아내기
+		String memId = req.getParameter("memId");
+		String memPass = req.getParameter("memPass");
+		
+		boolean valid = validate(memId, memPass);
+		/*
+		String location=req.getContextPath()+"/login/loginForm.jsp";
+		String viewName="/login/loginForm.jsp";
+		Map<String, String> member = new HashMap<>();
+		//1번  상황
+		if(!memId.equals("a001")) {
+			System.out.println("아이디틀림");
+			resp.sendRedirect(location);
+		//2번 상황
+		}else if(memId.equals("a001")&&!memPass.equals("123")) {
+			System.out.println("비밀번호 틀림");
+			member.put(memId, memPass);
+			req.setAttribute("member", member);
+			req.getRequestDispatcher(viewName).forward(req, resp);
+			System.out.println(member);
+		}else {
+			System.out.println("로그인성공");
+			req.setAttribute("memId", memId);
+			req.setAttribute("memPass", memPass);
+			viewName="/login/welcome.jsp";
+			req.getRequestDispatcher(viewName).forward(req, resp);
+		}*/
+	}
+}

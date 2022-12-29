@@ -1,0 +1,45 @@
+package kr.or.ddit.memo.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import kr.or.ddit.mybatis.MybatisUtils;
+import kr.or.ddit.vo.MemoVO;
+
+public class MemoDAOImpl implements MemoDao {
+	private SqlSessionFactory sqlSessionFactory = MybatisUtils.getSqlSessionFactory();
+	
+	@Override
+	public List<MemoVO> selectMemoList() {
+		try(
+			SqlSession sqlSession = sqlSessionFactory.openSession();
+		){
+			return sqlSession.selectList("kr.or.ddit.memo.dao.MemoDao.selectMemoList");
+		}
+	}
+
+	@Override
+	public int insertMemo(MemoVO memo) {
+//		try(
+//			SqlSession sqlSession = sqlSessionFactory.openSession();
+//		){
+//			return sqlSession.insert("kr.or.ddit.memo.dao.MemoDao.insertMemo");
+//		}
+		retrun 0;
+	}
+
+	@Override
+	public int updateMemo(MemoVO memo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteMemo(int code) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

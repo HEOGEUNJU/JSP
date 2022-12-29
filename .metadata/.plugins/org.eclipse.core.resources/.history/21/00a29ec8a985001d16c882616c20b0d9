@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+<!-- 1. 어디(where, appender) 2. 어떤 형식(how pattern, layout pattern) 3. 뭘(what, message) 4. 누가(who, logger) -->
+<!-- apeender -->
+<!-- logger -->
+<!-- layout -->
+<!-- level : 메시지 이벤트 등급, debug &lt; info &lt; warn &lt; error &lt; fatal-->
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+<!--   kr.or.ddit.memo.dao.MemoDao.selectMemoList -->
+	<Logger name="kr.or.ddit.memo.dao.MemoDao.selectMemoList" level="debug">
+	 	 <AppenderRef ref="Console"/>
+	</Logger>
+    <Root level="error">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>

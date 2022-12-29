@@ -1,0 +1,19 @@
+
+12월 23, 2022 08:36:30.57 NEW SESSION
+12월 23, 2022 08:36:30.57 [12728:1740:1223/083630.571:ERROR:device_event_log_impl.cc(215)] [08:36:30.571] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+12월 23, 2022 08:37:28.03 [12728:14664:1223/083728.038:ERROR:util.cc(133)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+12월 23, 2022 08:44:23.71 [12728:1740:1223/084423.716:ERROR:device_event_log_impl.cc(215)] [08:44:23.716] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: ��Ұ� �����ϴ�. (0x490)
+12월 23, 2022 10:06:16.08 [12728:1740:1223/100616.081:ERROR:interface_endpoint_client.cc(694)] Message 1 rejected by interface blink.mojom.WidgetHost
+12월 23, 2022 10:30:06.30 [12728:1740:1223/103006.301:ERROR:interface_endpoint_client.cc(694)] Message 1 rejected by interface blink.mojom.WidgetHost
+12월 23, 2022 12:38:05.01 [12728:1740:1223/123805.013:ERROR:interface_endpoint_client.cc(694)] Message 1 rejected by interface blink.mojom.WidgetHost
+12월 23, 2022 13:37:28.05 [12728:11696:1223/133728.056:ERROR:util.cc(133)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+12월 23, 2022 13:56:10.13 [12728:1740:1223/135610.138:ERROR:interface_endpoint_client.cc(694)] Message 1 rejected by interface blink.mojom.WidgetHost
+12월 23, 2022 13:57:30.42 [libprotobuf ERROR ..\..\third_party\protobuf\src\google\protobuf\message_lite.cc:133] Can't parse message of type "safe_browsing.ClientDownloadRequest" because it is missing required fields: (cannot determine missing fields for lite message)
+12월 23, 2022 13:57:51.89 [libprotobuf ERROR ..\..\third_party\protobuf\src\google\protobuf\message_lite.cc:133] Can't parse message of type "safe_browsing.ClientDownloadRequest" because it is missing required fields: (cannot determine missing fields for lite message)
+12월 23, 2022 17:19:21.99 [12728:1740:1223/171921.993:ERROR:interface_endpoint_client.cc(694)] Message 1 rejected by interface blink.mojom.WidgetHost
+12월 23, 2022 17:22:43.33 [libprotobuf ERROR ..\..\third_party\protobuf\src\google\protobuf\message_lite.cc:133] Can't parse message of type "safe_browsing.ClientDownloadRequest" because it is missing required fields: (cannot determine missing fields for lite message)
+12월 23, 2022 17:22:58.94 [libprotobuf ERROR ..\..\third_party\protobuf\src\google\protobuf\message_lite.cc:133] Can't parse message of type "safe_browsing.ClientDownloadRequest" because it is missing required fields: (cannot determine missing fields for lite message)
+12월 23, 2022 17:23:49.03 [libprotobuf ERROR ..\..\third_party\protobuf\src\google\protobuf\message_lite.cc:133] Can't parse message of type "safe_browsing.ClientDownloadRequest" because it is missing required fields: (cannot determine missing fields for lite message)
+
+12월 28, 2022 08:49:33.91 NEW SESSION
+12월 28, 2022 08:49:33.91 [3096:5548:1228/084933.900:ERROR:device_event_log_impl.cc(215)] [08:49:33.899] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.

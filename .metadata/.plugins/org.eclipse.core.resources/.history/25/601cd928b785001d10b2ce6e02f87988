@@ -1,0 +1,14 @@
+package kr.or.ddit.login.service;
+
+import kr.or.ddit.enumpkg.ServiceResult;
+import kr.or.ddit.vo.MemberVO;
+
+public class AuthenticateServiceImpl implements AuthenticateService {
+
+	@Override
+	public ServiceResult authenticate(MemberVO member) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,10 @@
+package kr.or.ddit.reflection;
+
+import kr.or.ddit.reflect.ReflectionTest;
+
+public class ReflectionDesc {
+	public static void main(String[] args) {
+		Object dataObj = ReflectionTest.getObject();
+		System.out.println(dataObj);
+	}
+}

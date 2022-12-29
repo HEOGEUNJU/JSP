@@ -1,0 +1,5 @@
+package kr.or.ddit.mybatis;
+
+public class MybatisUtils {
+
+}

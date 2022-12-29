@@ -1,0 +1,11 @@
+<classpath>
+  <container id="WebStudy01!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="D:/A_TeachingMaterial/6.JSP_Spring/workspace/WebStudy01/src/main/webapps/WEB-INF/lib/commons-dbcp2-2.9.0.jar">
+      <attribute name="javadoc_location">jar:platform:/resource/WebStudy01/src/main/webapps/WEB-INF/lib/commons-dbcp2-2.9.0-javadoc.jar!/</attribute>
+    </entry>
+    <entry id="D:/A_TeachingMaterial/6.JSP_Spring/workspace/WebStudy01/src/main/webapps/WEB-INF/lib/commons-lang3-3.12.0.jar">
+      <source-attachment-path>/WebStudy01/src/main/webapps/WEB-INF/lib/commons-lang3-3.12.0-sources.jar</source-attachment-path>
+      <attribute name="javadoc_location">jar:platform:/resource/WebStudy01/src/main/webapps/WEB-INF/lib/commons-lang3-3.12.0-javadoc.jar!/</attribute>
+    </entry>
+  </container>
+</classpath>

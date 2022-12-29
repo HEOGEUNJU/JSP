@@ -1,0 +1,27 @@
+
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+	
+		<select name='image' value="">
+		#options#
+		</select> 
+		
+	<div id="na">
+		<img id="na_image" src="">
+	</div>
+	
+	<script type="text/javascript">
+		$("[name=image]").on("change",function(event){
+			
+				$("#na_image").attr('src',"#cPath#/imageStreaming.do?image="+$(this).val());
+		});
+		
+		
+// 		<img src="#cPath#/imageStreaming.do?image=$(this).val()"/>
+		
+	</script>
+</body>
+</html>

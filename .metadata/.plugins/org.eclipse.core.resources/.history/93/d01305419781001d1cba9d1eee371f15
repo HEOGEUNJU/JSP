@@ -1,0 +1,39 @@
+package kr.or.ddit.servlet08;
+
+import java.io.IOException;
+import java.util.Calendar;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/10/calendar.do")
+public class CalendarControllerServlet extends HttpServlet{
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String paramYear = req.getParameter("year");
+		String paramMonth = req.getParameter("month");
+		
+		try {
+			int year = Integer.parseInt(paramYear);
+			int month = Integer.parseInt(paramMonth);
+		}catch (NumberFormatException e) {
+			resp.sendError(400);
+		}
+		Calendar calendar = Calendar.getInstance();
+//		if(paramYear != null) {
+//			calendar.set(Integer.parseInt(paramYear), Integer.parseInt(paramMonth), 1);
+//		}
+		
+		
+		
+		
+		req.setAttribute("calendar", new CalenderWrapper(calendar));
+		
+		String viewName="/WEB-INF/views/calendar.jsp";
+		req.getRequestDispatcher(viewName).forward(req, resp);						
+	}
+}

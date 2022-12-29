@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+fontPropagated=true
+org.eclipse.jface.textfont=1|D2Coding|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|D2Coding;
+org.eclipse.wst.jsdt.internal.ui.navigator.layout=1
+org.eclipse.wst.jsdt.ui.editor.tab.width=
+org.eclipse.wst.jsdt.ui.formatterprofiles.version=11
+org.eclipse.wst.jsdt.ui.javadoclocations.migrated=true
+org.eclipse.wst.jsdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="true" context\="javaScript" deleted\="false" description\="" enabled\="true" name\="ajaxCode">$$.ajax({&\#13;\r\n\t\t\t\turl\:"${cursor}"&\#13;\r\n\t\t\t\t, method\:""&\#13;\r\n\t\t\t\t, data\:{}&\#13;\r\n\t\t\t\t, dataType\:"" //json\uC73C\uB85C \uD558\uBA74 \uB9AC\uD134 \uD0C0\uC785\uC740 \uC5B8\uB9C8\uC0EC\uB9C1 script \uD0C0\uC785\uC774 \uC628\uB2E4.&\#13;\r\n\t\t\t\t, success\:function(resp){&\#13;\r\n\t\t\t\t\t&\#13;\r\n\t\t\t\t}&\#13;\r\n\t\t\t\t, error\:function(jqXHR,status,error){&\#13;\r\n\t\t\t\t\tconsole.log(jqXHR);&\#13;\r\n\t\t\t\t\tconsole.log(status);&\#13;\r\n\t\t\t\t\tconsole.log(error);&\#13;\r\n\t\t\t\t}&\#13;\r\n\t\t\t});</template></templates>
+org.eclipse.wst.jsdt.ui.text.templates_migrated=true
+proposalOrderMigrated=true
+tabWidthPropagated=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true
