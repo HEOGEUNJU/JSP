@@ -16,7 +16,6 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="kr.or.ddit.mvc.view.InternalResourceViewResolver"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="kr.or.ddit.login.service.AuthenticateService"/>
 <fullyQualifiedTypeName name="kr.or.ddit.login.service.AuthenticateServiceImpl"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="kr.or.ddit.member.dao.MemberDAO"/>
 <fullyQualifiedTypeName name="kr.or.ddit.vo.MemberVO"/>
 <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+<fullyQualifiedTypeName name="kr.or.ddit.mvc.view.InternalResourceViewResolver"/>
 </qualifiedTypeNameHistroy>

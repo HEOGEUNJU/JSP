@@ -31,7 +31,7 @@ public class MemberServiceTest {
 
    @Test
    public void testRetrieveMemberList() {
-	   List<MemberVO> memberList = service.retrieveMemberList();
+	   List<MemberVO> memberList = service.retrieveMemberList(PagingVO);
 	   assertNotEquals(0, memberList.size());
    }
 

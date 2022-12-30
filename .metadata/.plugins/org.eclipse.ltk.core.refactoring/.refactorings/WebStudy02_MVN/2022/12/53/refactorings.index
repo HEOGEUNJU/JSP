@@ -6,3 +6,8 @@
 1672106913078	Delete elements
 1672109321168	Delete element
 1672109350137	Rename type 'DataBaseMemoDAOImplTest'
+1672295720473	Rename package 'kr.or.ddit.pack'
+1672295726307	Rename package 'Prod'
+1672365210493	Change method 'selectMemberList'
+1672365310496	Change method 'retrieveMemberList'
+1672371620842	Change method 'selectTotalRecord'

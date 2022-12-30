@@ -3,13 +3,67 @@
 
 <!-- memberDAO.java의 interface의 네임이 필요 -->
 <mapper namespace="kr.or.ddit.member.dao.MemberDAO">
-   
-   <select id="selectMemberList" resultType="MemberVO">
-   SELECT MEM_ID, MEM_NAME, MEM_ADD1, MEM_HP, MEM_MAIL, MEM_MILEAGE                 
-      FROM MEMBER                                  
+	<sql id="searchFrag">
+	 <where>
+	 	<if test="simpleCondition neq null and @org.apache.commons.lang3.StringUtils@isNotBlank(simpleCondition.searchWord)">
+	 		<choose>
+	 			<when test="simpleCondition.searchType eq 'name'">
+	 				INSTR(MEM_NAME, #{simpleCondition.searchWord})>0
+	 			</when>
+	 			<when test="simpleCondition.searchType eq 'address'">
+	 				INSTR(MEM_ADD1, #{simpleCondition.searchWord})>0
+	 			</when>
+	 			<otherwise>
+	 				INSTR(MEM_NAME, #{simpleCondition.searchWord})>0
+	 				OR
+	 				INSTR(MEM_ADD1, #{simpleCondition.searchWord})>0
+	 			</otherwise>
+	 		</choose>
+	 	</if>
+ 	  </where>
+	</sql>
+   <select id="selectTotalRecord" resultType="int" parameterType="PagingVO">
+   	 SELECT COUNT(*)
+   	 FROM MEMBER
+   	 <include refid="searchFrag"/>
    </select>
    
-   <select id="selectMember" parameterType="String" resultType="MemberVO">
+   <select id="selectMemberList" resultType="MemberVO" parameterType="PagingVO">
+   	SELECT B.*
+   	FROM(
+	   	SELECT A.*, ROWNUM RNUM
+	   	FROM 	(
+			   SELECT MEM_ID, MEM_NAME, MEM_ADD1, MEM_HP, MEM_MAIL, MEM_MILEAGE     
+			   		,( select count(distinct cart_prod)
+			       		from cart 
+			        	where cart_member = mem_id) CART_COUNT          
+			 	 FROM MEMBER
+		 	  	<include refid="searchFrag"/>
+			 	 ORDER BY ROWID DESC                                  
+	   	)A   	
+   	)B
+   	<![CDATA[
+	WHERE RNUM >= #{startRow} AND RNUM <= #{endRow}
+   	]]>
+   </select>
+   
+   <resultMap type="MemberVO" id="memberMap" autoMapping="true" >
+   		<id property="memId" column="MEM_ID"/>
+   		<collection property="prodList" ofType="ProdVO" autoMapping="true">
+   			<association property="buyer" javaType="BuyerVO" autoMapping="true" />
+   		</collection>
+   </resultMap>
+   
+   <select id="selectMember" parameterType="String" resultMap="memberMap">
+    WITH CARTVIEW AS (
+    	SELECT  DISTINCT CART_MEMBER, CART_PROD
+    	FROM	CART
+    ), CARTPROD AS (
+    	SELECT  CART_MEMBER
+    			, PRODVIEW.*
+    	FROM 	CARTVIEW INNER JOIN PRODVIEW ON(CART_PROD = PROD_ID)
+    )
+   
    SELECT  
              MEM_ID,     MEM_PASS,   MEM_NAME,                      
              MEM_REGNO1, MEM_REGNO2,                                
@@ -20,8 +74,17 @@
              MEM_MEMORIAL,                                          
              TO_CHAR(MEM_MEMORIALDAY, 'YYYY-MM-DD') MEM_MEMORIALDAY,
              MEM_MILEAGE,                                           
-             MEM_DELETE                                             
-      FROM    MEMBER                                             
+             MEM_DELETE,
+             PROD_ID,
+             PROD_NAME,
+             PROD_COST,
+             PROD_PRICE,
+             PROD_MILEAGE,
+             LPROD_NM,
+             BUYER_NAME,
+             BUYER_ADD1,
+             BUYER_CHARGER                                             
+      FROM   MEMBER LEFT OUTER JOIN CARTPROD ON(MEM_ID = CART_MEMBER)
       WHERE MEM_ID = #{memId}            
    </select>
    
@@ -88,10 +151,11 @@
 		MEM_ID=#{memId}
    </update>
    
-   <delete id="deleteMember" parameterType="MemberVO">
-   delete member
-   where 
-   		 MEM_ID = #{memId,jdbcType=VARCHAR}
+   <delete id="deleteMember" parameterType="String">
+      UPDATE MEMBER
+      SET
+      	MEM_DELETE = '1'
+      WHERE MEM_ID = #{memId}
    </delete>
    
 </mapper>

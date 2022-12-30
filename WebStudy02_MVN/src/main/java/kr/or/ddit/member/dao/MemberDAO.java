@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.PagingVO;
 
 /**
  *	협업과 코드의 캡슐화를 위해서 인터페이스 사용
@@ -12,6 +13,8 @@ import kr.or.ddit.vo.MemberVO;
  *	회원관리(CRUD)를 위한 Persistence Layer
  */
 public interface MemberDAO {
+	
+	public int selectTotalRecord(PagingVO<MemberVO> pagingVO);
 	
 	/**
 	 * 회원 신규 등록
@@ -21,9 +24,10 @@ public interface MemberDAO {
 	public int insertMember(MemberVO member);
 	/**
 	 * 회원 목록 조회
+	 * @param PagingVO TODO
 	 * @return size == 0인 경우, 조건에 맞는 레코드 없음.
 	 */
-	public List<MemberVO> selectMemberList();
+	public List<MemberVO> selectMemberList(PagingVO<MemberVO> PagingVO);
 	/**
 	 * 회원 상세 조회
 	 * @param memId

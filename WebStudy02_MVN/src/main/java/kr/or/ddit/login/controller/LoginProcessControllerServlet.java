@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
@@ -18,6 +20,7 @@ import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.exception.UserNotFoundException;
 import kr.or.ddit.login.service.AuthenticateService;
 import kr.or.ddit.login.service.AuthenticateServiceImpl;
+import kr.or.ddit.member.controller.MemberInsertControllerServlet;
 import kr.or.ddit.vo.MemberVO;
 
 /**
@@ -30,8 +33,10 @@ import kr.or.ddit.vo.MemberVO;
 @WebServlet("/login/loginProcess.do")
 public class LoginProcessControllerServlet extends HttpServlet{
 	
-   private AuthenticateService service = new AuthenticateServiceImpl();
+	private static final Logger log = LoggerFactory.getLogger(MemberInsertControllerServlet.class);
 	
+   private AuthenticateService service = new AuthenticateServiceImpl();
+   
    @Override
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //    1.

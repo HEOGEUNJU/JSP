@@ -40,7 +40,7 @@ public class SerializationTest {
 		writeData.setContent("내용");
 //		2022-12-14 17:20:00
 		String date = String.format("%1$ty-%1$tm-%1$td %1$tH:%1$tM:%1$tS", LocalDateTime.now());  
-		writeData.setDate(date);
+		writeData.setDate2(date);
 		
 		
 		writeFile = new File("d:/sample.dat");

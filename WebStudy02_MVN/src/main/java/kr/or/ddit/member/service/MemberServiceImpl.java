@@ -13,6 +13,7 @@ import kr.or.ddit.member.dao.MemberDAO;
 import kr.or.ddit.member.dao.MemberDAOImpl;
 import kr.or.ddit.memo.controller.MemoControllerServlet;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.PagingVO;
 
 public class MemberServiceImpl implements MemberService {
 	// 결합력 최상인 상태
@@ -38,10 +39,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> retrieveMemberList() {
-		List<MemberVO> memberList = memberDAO.selectMemberList(); 
-		memberList.stream()
-			.forEach(System.out::println);//method reperence 문법
+	public List<MemberVO> retrieveMemberList(PagingVO<MemberVO> pagingVO) {
+		pagingVO.setTotalRecord(memberDAO.selectTotalRecord(pagingVO));
+		List<MemberVO> memberList = memberDAO.selectMemberList(pagingVO); 
+		pagingVO.setDataList(memberList);
 		return memberList;
 	}
 
@@ -70,11 +71,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ServiceResult removeMember(MemberVO member) {
-		MemberVO inputData = new MemberVO();
-		inputData.setMemId(member.getMemId());
-		inputData.setMemPass(member.getMemPass());
-		
-		ServiceResult result = authService.authenticate(inputData);
+		ServiceResult result = authService.authenticate(member);
 		if(ServiceResult.OK.equals(result)) {
 			log.info("memberID : {}",member.getMemId() );
 			int rowcnt = memberDAO.deleteMember(member.getMemId());

@@ -2,12 +2,18 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="log" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="log"/>
+			<item value="bs.modal"/>
+			<item value="hidden.bs.modal"/>
+			<item value="exampleModal"/>
+			<item value="makelistbody"/>
+			<item value="edd"/>
 			<item value="required"/>
 			<item value="date"/>
 			<item value="compiler"/>
@@ -17,10 +23,6 @@
 			<item value="attr"/>
 			<item value="target"/>
 			<item value="consol"/>
-			<item value="value"/>
-			<item value="jsp"/>
-			<item value="compilerSou"/>
-			<item value="&lt;servlet-name&gt;jsp&lt;/servlet-name&gt;"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

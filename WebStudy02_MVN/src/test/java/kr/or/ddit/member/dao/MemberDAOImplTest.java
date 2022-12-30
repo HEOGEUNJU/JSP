@@ -9,7 +9,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.PagingVO;
+import kr.or.ddit.vo.ProdVO;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MemberDAOImplTest {
 
 	private MemberDAO dao = new MemberDAOImpl();
@@ -32,24 +36,31 @@ public class MemberDAOImplTest {
 		
 	}
 
-	@Test
+	//@Test
 	public void testInsertMember() {
 		dao.insertMember(member);
 	}
 
 	@Test
 	public void testSelectMemberList() {
-		List<MemberVO> memberList = dao.selectMemberList();
+		PagingVO<MemberVO> pagingVO = new PagingVO<>();
+		pagingVO.setTotalRecord(dao.selectTotalRecord(pagingVO));
+		pagingVO.setCurrentPage(2);
+		List<MemberVO> memberList = dao.selectMemberList(pagingVO);
 		memberList.stream()
 				  .forEach(System.out::println);
+		pagingVO.setDataList(memberList);
+		
+		log.info("paging : {}",pagingVO);
 	}
 
 	@Test
 	public void testSelectMember() {
 		MemberVO member = dao.selectMember("a001");
-		System.out.println(member);
-		member = dao.selectMember("12134a");
-		assertNull(member);
+//		System.out.println(member.getProdList().stream());
+//		member.getProdList().stream().forEach(System.out::println);
+		//		member = dao.selectMember("12134a");
+//		assertNull(member);
 	}
 
 	//@Test
@@ -59,7 +70,8 @@ public class MemberDAOImplTest {
 
 	//@Test
 	public void testDeletemember() {
-		fail("Not yet implemented");
+		int rowcnt = dao.deleteMember("b001");
+		assertEquals(1, rowcnt);
 	}
 
 }

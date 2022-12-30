@@ -18,7 +18,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 	@Override
 	public ServiceResult authenticate(MemberVO member) {
 		MemberVO savedMember = memberDao.selectMember(member.getMemId());
-		if(savedMember==null)
+		if(savedMember==null || savedMember.isMemDelete())
 			throw new UserNotFoundException(String.format("%s 사용자 없음.", member.getMemId()));
 		String inputPass = member.getMemPass();
 		String savedPass = savedMember.getMemPass();

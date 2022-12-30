@@ -138,6 +138,13 @@
 	    <version>0.2.7</version>
 	</dependency>	
 
+<!--  JavaBean 규약 지원 -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+         <artifactId>lombok</artifactId>
+          <version>1.18.24</version>
+          <scope>provided</scope>
+     </dependency>
 	
 <!-- 	test framwork -->
 	<dependency>
