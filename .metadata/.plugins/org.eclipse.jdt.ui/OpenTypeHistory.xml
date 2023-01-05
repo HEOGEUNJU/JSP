@@ -2,5 +2,9 @@
 <typeInfoHistroy>
 <typeInfo handle="=languageLab/src\/main\/java&lt;kr.or.ddit.designpattern.adapterpattern{Target.java[Target" modifiers="513" timestamp="1671520028838"/>
 <typeInfo handle="=languageLab/src\/main\/java&lt;kr.or.ddit.designpattern.templatemethodpattern{TemplateClass.java[TemplateClass" modifiers="1025" timestamp="1672042156921"/>
-<typeInfo handle="=WebStudy01/D:\/A_TeachingMaterial\/6.JSP_Spring\/workspace\/WebStudy01\/src\/main\/webapps\/WEB-INF\/lib\/commons-lang3-3.12.0.jar&lt;org.apache.commons.lang3(StringUtils.class[StringUtils" modifiers="33" timestamp="1671687978839"/>
+<typeInfo handle="=languageLab/D:\/B_Util\/2.Java\/JDK1.8\/jre\/lib\/rt.jar&lt;java.security(Principal.class[Principal" modifiers="1537" timestamp="1635742522902"/>
+<typeInfo handle="=WebStudy03_MVC/D:\/B_Util\/6.maven\/.m2\/repository\/javax\/servlet\/javax.servlet-api\/3.1.0\/javax.servlet-api-3.1.0.jar&lt;javax.servlet.http(Part.class[Part" modifiers="1537" timestamp="1672046013569"/>
+<typeInfo handle="=WebStudy03_MVC/src\/main\/java&lt;kr.or.ddit.mvc.annotation.resolvers{HandlerMethodArgumentResolver.java[HandlerMethodArgumentResolver" modifiers="513" timestamp="1672726507471"/>
+<typeInfo handle="=WebStudy03_MVC/src\/main\/java&lt;kr.or.ddit.mvc.annotation{HandlerAdapter.java[HandlerAdapter" modifiers="513" timestamp="1672715813124"/>
+<typeInfo handle="=WebStudy03_MVC/D:\/B_Util\/2.Java\/JDK1.8\/jre\/lib\/rt.jar&lt;java.util(Optional.class[Optional" modifiers="49" timestamp="1635742522902"/>
 </typeInfoHistroy>

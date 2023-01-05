@@ -20,8 +20,11 @@ import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
 import kr.or.ddit.mvc.annotation.RequestMethod;
 import kr.or.ddit.mvc.annotation.resolvers.ModelAttribute;
+import kr.or.ddit.mvc.annotation.resolvers.RequestPart;
 import kr.or.ddit.mvc.annotation.stereotype.Controller;
 import kr.or.ddit.mvc.annotation.stereotype.RequestMapping;
+import kr.or.ddit.mvc.multipart.MultipartFile;
+import kr.or.ddit.mvc.multipart.MultipartHttpServletRequest;
 import kr.or.ddit.mvc.view.InternalResourceViewResolver;
 import kr.or.ddit.validate.UpdateGroup;
 import kr.or.ddit.validate.ValidationUtils;
@@ -51,10 +54,14 @@ public class MemberUpdateControllerServlet{
 	
 	@RequestMapping(value = "/member/memberUpdate.do", method = RequestMethod.POST) 
 	public String updateProcess(
+		
 		@ModelAttribute("member") MemberVO member
+		, @RequestPart(value="memImage", required =false) MultipartFile memImage
 		, HttpServletRequest req
-	){
-			
+		, HttpSession session
+	) throws ServletException, IOException{
+		member.setMemImage(memImage);
+		
 		String viewName = null;
 		
 		Map<String, List<String>> errors = new LinkedHashMap<>();
@@ -75,6 +82,8 @@ public class MemberUpdateControllerServlet{
 				break;
 				
 			default:
+				MemberVO modifiedMember = service.retrieveMember(member.getMemId());
+				session.setAttribute("authMember", modifiedMember);
 				viewName = "redirect:/mypage.do";
 				break;
 			}

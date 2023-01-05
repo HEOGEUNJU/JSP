@@ -1,8 +1,0 @@
-package kr.or.ddit.object;
-
-public class ObjectPlayground {
-	public static void main(String[] args) {
-		String qualifiedName = "kr.or.ddit.object.Parent";
-		Class<?> type1 = Parent.class; 
-	}
-}
