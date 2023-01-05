@@ -7,9 +7,7 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="WebStudy02_MVN"/>
-			<item value="dummyWebMVN"/>
-			<item value="dummyMVN"/>
+			<item value="PostgreMaven"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -27,7 +25,21 @@
 	</section>
 	<section name="org.eclipse.m2e.core.pom.overview">
 	</section>
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\WebStudy03_MVC"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
 	<section name="MavenProjectWizardArchetypePage">
+		<item value="All Catalogs" key="catalog"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -53,6 +65,8 @@
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
 			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace"/>
+			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\WebStudy02_MVN\src\main\webapp\WEB-INF\web.xml"/>
+			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\WebStudy02_MVN\src\test\java\kr\or\ddit\io\SerializationTest.java"/>
 			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\dummyWeb2"/>
 		</list>
 		<list key="projectNameTemplate">

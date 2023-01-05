@@ -1,9 +1,0 @@
-package kr.or.ddit.member.controller;
-
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-
-@WebServlet("/member/memberList.do")
-public class MemberListControllerServlet extends HttpServlet{
-
-}

@@ -98,56 +98,55 @@
    <tr>
       <td colspan="2">
          <a href="<c:url value='/member/memberUpdate.do'/>" class="btn btn-primary">수정</a>
-         <a data-bs-toggle="modal" data-bs-target=#exampleModal class="btn btn-danger">탈퇴</a>
-         
+         <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger">탈퇴</a>
       </td>
    </tr>
    </c:if>
    <tr>
-         <th> 구매기록</th>
-         <td>
-            <table>
-               <thead>
-                  <tr>
-                     <th>상품아이디</th>
-                     <th>상품명</th>
-                   <th>분류명</th> 
-                     <th>거래처명</th>
-                     <th>구매가</th>
-                     <th>판매가</th>
-                     <th>마일리지</th>
-                  </tr>
-               </thead>   
-               <tbody>
-               <c:set var="prodList" value="${member.prodList }" /> 
-                  <c:choose>
-                  <c:when test="${not empty prodList }">
+      <th>구매기록</th>
+      <td>
+         <table>
+            <thead>
+               <tr>
+                  <th>상품아이디</th>
+                  <th>삼품명</th>
+                  <th>분류명</th>
+                  <th>거래처명</th>
+                  <th>구매가</th>
+                  <th>판매가</th>
+                  <th>마일리지</th>
+               </tr>
+            </thead>
+            <tbody>
+               <c:set var="prodList" value="${member.prodList }"></c:set>
+               <c:choose>
+                  <c:when test="${not empty member.prodList }">
                      <c:forEach items="${prodList }" var="prod">
                         <tr>
                            <td>${prod.prodId }</td>
                            <td>
-                           		<c:url value="/prod/prodView.do" var ="prodViewURL">
-                           			<c:param name = "what" value ="${prod.prodId }"/>
-                           		</c:url>
-                           		<a href="${prodViewURL }">${prod.prodName }</a>
+                              <c:url value="/prod/prodView.do" var="prodViewURL">
+                                 <c:param name="what" value="${prod.prodId }"></c:param>
+                              </c:url>
+                              <a href="${prodViewURL }">${prod.prodName }</a>
                            </td>
                            <td>${prod.lprodNm }</td>
                            <td>${prod.buyer.buyerName }</td>
                            <td>${prod.prodCost }</td>
                            <td>${prod.prodPrice }</td>
-                           <td>${prod.prodMileage}</td>
+                           <td>${prod.prodMileage }</td>
                         </tr>
                      </c:forEach>
                   </c:when>
                   <c:otherwise>
                      <tr>
-                        <td colspan="7"> 구매기록 없음. </td>
+                        <td colspan="7">구매기록 없음.</td>
                      </tr>
-                  </c:otherwise>                  
-                  </c:choose>
-               </tbody>      
-            </table>
-         </td>
+                  </c:otherwise>
+               </c:choose>
+            </tbody>
+         </table>
+      </td>
    </tr>
 </table>
 
@@ -166,18 +165,16 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-danger">탈퇴</button>
+        <button type="submit" class="btn btn-danger">탈퇴</button>       <%--form 안에 button 하나가 있다면 자동으로 submit처리됨 --%>
       </div>
       </form>
     </div>
   </div>
 </div>
-<script type="text/javascript">
-   $("#exampleModal").on("hidden.bs.modal", function(event){
-      $(this).find("form")[0].reset();
+<script>
+   $("#exampleModal").on("hidden.bs.modal", function(event) {
+      $(this).find("form")[0].reset();   
    });
-
-
 </script>
 <jsp:include page="/includee/postScript.jsp"/>
 </body>

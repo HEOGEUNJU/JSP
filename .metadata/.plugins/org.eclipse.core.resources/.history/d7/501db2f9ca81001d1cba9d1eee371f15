@@ -1,5 +1,0 @@
-package kr.or.ddit.commons.wrapper;
-
-public class CookieHttpServletRequestWrapper {
-
-}

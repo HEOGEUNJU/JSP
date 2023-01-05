@@ -8,5 +8,5 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface ViewResolver {
 	public void resolveView(String viewName, HttpServletRequest req, HttpServletResponse resp)
-		throws ServletException, IOException;
+		throws ServletException, IOException;	// 필요에 따라 구현체를 여러개 만들어 사용가능
 }

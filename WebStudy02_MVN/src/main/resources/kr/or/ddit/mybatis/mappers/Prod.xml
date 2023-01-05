@@ -5,16 +5,21 @@
 	 <where>
 	 	<if test="simpleCondition neq null and @org.apache.commons.lang3.StringUtils@isNotBlank(simpleCondition.searchWord)">
 	 		<choose>
-	 			<when test="simpleCondition.searchType eq 'name'">
+	 			<when test="simpleCondition.searchType eq 'lprodNm'">
+	 				INSTR(LPROD_NM, #{simpleCondition.searchWord})>0
+	 			</when>
+	 			<when test="simpleCondition.searchType eq 'buyerName'">
 	 				INSTR(BUYER_NAME, #{simpleCondition.searchWord})>0
 	 			</when>
-	 			<when test="simpleCondition.searchType eq 'address'">
-	 				INSTR(BUYER_ADD1, #{simpleCondition.searchWord})>0
+	 			<when test="simpleCondition.searchType eq 'prodName'">
+	 				INSTR(PROD_NAME, #{simpleCondition.searchWord})>0
 	 			</when>
 	 			<otherwise>
+	 				INSTR(LPROD_NM, #{simpleCondition.searchWord})>0
+	 				OR
 	 				INSTR(BUYER_NAME, #{simpleCondition.searchWord})>0
 	 				OR
-	 				INSTR(BUYER_ADD1, #{simpleCondition.searchWord})>0
+	 				INSTR(PROD_NAME, #{simpleCondition.searchWord})>0
 	 			</otherwise>
 	 		</choose>
 	 	</if>
@@ -22,7 +27,7 @@
 	</sql>
 	<select id="selectTotalRecord" resultType="int" parameterType="PagingVO">
    	 SELECT COUNT(*)
-   	 FROM PROD
+   	 FROM PRODVIEW
    	 <include refid="searchFrag"/>
    </select>
 	
@@ -40,7 +45,7 @@
 			)
 			select prod_id,
 			       lprod_nm,
-			       prod_outline,
+			       prod_name,
 			       buyer_name,
 			       prod_cost,
 			       prod_sale,

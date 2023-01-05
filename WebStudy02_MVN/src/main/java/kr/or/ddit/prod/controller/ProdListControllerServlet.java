@@ -44,7 +44,7 @@ public class ProdListControllerServlet extends HttpServlet{
 	      pagingVO.setCurrentPage(currentPage);
 	      pagingVO.setSimpleCondition(simpleCondition);
 	      
-	      List<ProdVO> prodList = service.retrieveProdList(pagingVO);
+	      service.retrieveProdList(pagingVO);
 	      req.setAttribute("pagingVO", pagingVO);
 	      
 	      log.info("paging data : {}", pagingVO);

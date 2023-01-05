@@ -12,7 +12,6 @@
 		alert("${message}");
 	</script>
 </c:if>
-
 </head>
 <body>
 	<h4>가입 양식</h4>
@@ -25,7 +24,7 @@
 					name="memId" value="${member.memId}" /><span class="text-danger">${errors.memId}</span></td>
 			</tr>
 			<tr>
-				<th>회원비밀번호</th>
+				<th>비밀번호</th>
 				<td><input class="form-control" type="text" 
 					name="memPass" value="${member.memPass}" /><span
 					class="text-danger">${errors.memPass}</span></td>
@@ -52,7 +51,7 @@
 					name="memBir" value="${member.memBir}" /><span class="text-danger">${errors.memBir}</span></td>
 			</tr>
 			<tr>
-				<th>짚</th>
+				<th>우편번호</th>
 				<td><input class="form-control" type="text" 
 					name="memZip" value="${member.memZip}" /><span class="text-danger">${errors.memZip}</span></td>
 			</tr>
@@ -69,12 +68,12 @@
 					class="text-danger">${errors.memAdd2}</span></td>
 			</tr>
 			<tr>
-				<th>집전화</th>
+				<th>집전번</th>
 				<td><input class="form-control" type="text" name="memHometel"
 					value="${member.memHometel}" /><span class="text-danger">${errors.memHometel}</span></td>
 			</tr>
 			<tr>
-				<th>회사전화</th>
+				<th>회사전번</th>
 				<td><input class="form-control" type="text" name="memComtel"
 					value="${member.memComtel}" /><span class="text-danger">${errors.memComtel}</span></td>
 			</tr>

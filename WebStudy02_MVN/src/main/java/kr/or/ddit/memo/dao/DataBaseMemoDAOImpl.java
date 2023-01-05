@@ -43,7 +43,7 @@ public class DataBaseMemoDAOImpl implements MemoDao {
 				memo.setCode(rs.getInt("CODE"));
 				memo.setWriter(rs.getString("WRITER"));
 				memo.setContent(rs.getString("CONTENT"));
-				memo.setDate(rs.getString("DATE2"));
+				memo.setDate2(rs.getString("DATE2"));
 			}
 			return memoList;
 		} catch (SQLException e) {

@@ -1,5 +1,0 @@
-package kr.or.ddit.login.controller;
-
-public class LogoutControllerServlet {
-
-}
