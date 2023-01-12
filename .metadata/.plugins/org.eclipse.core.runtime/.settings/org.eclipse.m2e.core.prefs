@@ -1,5 +1,5 @@
 eclipse.m2.defaultRuntime=apache-maven-3.8.6
-eclipse.m2.downloadSources=false
+eclipse.m2.downloadJavadoc=true
 eclipse.m2.runtimes=apache-maven-3.8.6
 eclipse.m2.runtimesNodes/apache-maven-3.8.6/location=D\:\\B_Util\\6.maven\\apache-maven-3.8.6
 eclipse.m2.runtimesNodes/apache-maven-3.8.6/type=EXTERNAL

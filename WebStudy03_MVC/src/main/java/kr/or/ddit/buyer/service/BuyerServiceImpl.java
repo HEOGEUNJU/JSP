@@ -4,12 +4,16 @@ import java.util.List;
 
 import kr.or.ddit.buyer.dao.BuyerDAO;
 import kr.or.ddit.buyer.dao.BuyerDAOImpl;
+import kr.or.ddit.enumpkg.ServiceResult;
+import kr.or.ddit.login.service.AuthenticateService;
+import kr.or.ddit.login.service.AuthenticateServiceImpl;
 import kr.or.ddit.vo.BuyerVO;
 import kr.or.ddit.vo.PagingVO;
 
 public class BuyerServiceImpl implements BuyerService {
 	
 	private BuyerDAO buyerDAO = new BuyerDAOImpl();
+	private AuthenticateService authService = new AuthenticateServiceImpl();
 
 	@Override
 	public List<BuyerVO> retrieveBuyerList(PagingVO<BuyerVO> pagingVO) {
@@ -28,8 +32,8 @@ public class BuyerServiceImpl implements BuyerService {
 
 	@Override
 	public int createBuyer(BuyerVO buyer) {
-		// TODO Auto-generated method stub
-		return 0;
+		int rowcnt = buyerDAO.insertBuyer(buyer);
+		return rowcnt;
 	}
 
 	@Override

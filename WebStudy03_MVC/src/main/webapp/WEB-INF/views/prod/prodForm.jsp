@@ -150,6 +150,7 @@
             <input type="submit" value="저장">
             <input type="reset" value="취소">
          </td>
+      </tr>
    </table>
 </form>
 <script type="text/javascript">

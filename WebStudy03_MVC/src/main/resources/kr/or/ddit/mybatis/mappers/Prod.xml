@@ -138,7 +138,9 @@
 	          , PROD_SALE = #{prodSale,jdbcType=NUMERIC}
 	          , PROD_OUTLINE = #{prodOutline,jdbcType=VARCHAR}
 	          , PROD_DETAIL = #{prodDetail,jdbcType=CLOB}
+	          <if test= "org.apache.commons.lang3.StringUtils@isNotBlank(prodImg)">
 	          , PROD_IMG = #{prodImg,jdbcType=VARCHAR}
+	          </if>
 	          , PROD_TOTALSTOCK = #{prodTotalstock,jdbcType=NUMERIC}
 	          , PROD_INSDATE = #{prodInsdate,jdbcType=DATE}
 	          , PROD_PROPERSTOCK = #{prodProperstock,jdbcType=NUMERIC}

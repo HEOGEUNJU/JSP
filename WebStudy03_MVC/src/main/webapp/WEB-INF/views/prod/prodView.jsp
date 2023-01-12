@@ -123,6 +123,10 @@
 				</c:url>
 				<a href="${prodUpdateURL }" class="btn btn-primary">수정</a>
 				<a class="btn btn-secondary" href="${listURL }">목록으로</a>
+				<c:url value ="/prod/prodUpdate.do" var="updateURL">
+					<c:param name="what" value="${prod.prodId }"/>
+				</c:url>
+				<a href ="${updateURL }" class="btn btn-primary">상품수정</a>
 			</td>
 		</tr>
 		<tr>

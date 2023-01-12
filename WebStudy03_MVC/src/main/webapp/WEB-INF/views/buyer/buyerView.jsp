@@ -11,60 +11,65 @@
 <body>
 	<table class="table table-bordered">
 		<tr>
-			<th></th>
+			<th>판매자아이디</th>
 			<td>${buyer.buyerId}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>거래처 이름</th>
 			<td>${buyer.buyerName}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>상품의 분류 코드</th>
 			<td>${buyer.buyerLgu}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>은행</th>
 			<td>${buyer.buyerBank}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>계좌번호</th>
 			<td>${buyer.buyerBankno}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>예금주</th>
 			<td>${buyer.buyerBankname}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>우편번호</th>
 			<td>${buyer.buyerZip}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>주소1</th>
 			<td>${buyer.buyerAdd1}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>상세주소</th>
 			<td>${buyer.buyerAdd2}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>회사번호</th>
 			<td>${buyer.buyerComtel}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>팩스</th>
 			<td>${buyer.buyerFax}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>메일</th>
 			<td>${buyer.buyerMail}</td>
 		</tr>
 		<tr>
-			<th></th>
+			<th>담당자</th>
 			<td>${buyer.buyerCharger}</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<a class="btn btn-secondary" href="<c:url value='/buyer/buyerList.do'/>">목록으로</a>
+				<c:url value='/buyer/buyerList.do' var="listURL"/>
+				<c:url value="/buyer/buyerUpdate.do" var="buyerUpdateURL">
+					<c:param name="what" value="${buyer.buyerId }" />
+				</c:url>
+				<a href="${buyerUpdateURL }" class="btn btn-primary">수정</a>
+				<a class="btn btn-secondary" href="${listURL }">목록으로</a>
 			</td>
 		</tr>
 		<tr>

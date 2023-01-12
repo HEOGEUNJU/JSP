@@ -73,7 +73,6 @@
 		<load-on-startup>1</load-on-startup>
 		<multipart-config>
 			<location>D:/filetemp</location>
-			
 		</multipart-config>
 	</servlet>
 	<servlet-mapping>

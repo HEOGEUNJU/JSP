@@ -3,6 +3,8 @@ package kr.or.ddit.prod.service;
 import java.util.List;
 
 import kr.or.ddit.enumpkg.ServiceResult;
+import kr.or.ddit.login.service.AuthenticateService;
+import kr.or.ddit.login.service.AuthenticateServiceImpl;
 import kr.or.ddit.prod.dao.ProdDAO;
 import kr.or.ddit.prod.dao.ProdDAOImpl;
 import kr.or.ddit.vo.PagingVO;
@@ -10,6 +12,7 @@ import kr.or.ddit.vo.ProdVO;
 
 public class ProdServiceImpl implements ProdService {
 	private ProdDAO prodDAO = new ProdDAOImpl();
+	private AuthenticateService authService = new AuthenticateServiceImpl();
 
 	@Override
 	public ProdVO retrieveProd(String prodId) {
@@ -37,8 +40,10 @@ public class ProdServiceImpl implements ProdService {
 
 	@Override
 	public ServiceResult modifyProd(ProdVO prod) {
-		ProdVO inputData = new ProdVO();
-		inputData.setProdId(prod.getProdId());
+		ServiceResult result = null;
+		int rowcnt = prodDAO.updateProd(prod);
+		result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		return result;
 	}
 
 }

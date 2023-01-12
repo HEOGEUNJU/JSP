@@ -7,6 +7,8 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="WebStudy04_SpringMVC"/>
+			<item value="SpringDIContainer"/>
 			<item value="PostgreMaven"/>
 		</list>
 		<list key="projectNameTemplate">

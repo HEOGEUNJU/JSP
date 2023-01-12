@@ -59,50 +59,17 @@ public class ProdInsertController{
 		
 		addAttribute(req);
 		
+		prod.setProdImage(prodImage);
 		
-			if(prodImage!=null&&!prodImage.isEmpty()) {
-//				1. 저장
-				String saveFolderURL = "/resources/prodImages";
-				ServletContext application = req.getServletContext();
-				String saveFolderPath = application.getRealPath(saveFolderURL);
-				File saveFolder = new File(saveFolderPath);
-				if(!saveFolder.exists())
-					saveFolder.mkdirs(); //경로가 없다면 생성
-//				2. metadata추출
-				String saveFilename = UUID.randomUUID().toString();
-				prodImage.transferTo(new File(saveFolder, saveFilename));
-//				3. db저장
-				prod.setProdImg(saveFilename);
-			}
-				
-		/*	String saveFolderURL = "/resources/prodImages";
-			ServletContext application = req.getServletContext();
-			String saveFolderPath = application.getRealPath(saveFolderURL);
-			File saveFolder = new File(saveFolderPath);
-			if(!saveFolder.exists())
+//		1. 저장
+		String saveFolderURL = "/resources/prodImages";
+		ServletContext application = req.getServletContext();
+		String saveFolderPath = application.getRealPath(saveFolderURL);
+		File saveFolder = new File(saveFolderPath);
+		if(!saveFolder.exists())
 				saveFolder.mkdirs(); //경로가 없다면 생성
-//			2.metadata 추출
-			List<String> metadata = req.getParts().stream()
-					.filter((p)->
-						p.getContentType()!=null&&p.getContentType().startsWith("image/")
-					)
-					.map((p)->{
-						String originalFilename = p.getSubmittedFileName();
-						String saveFilename = UUID.randomUUID().toString();
-						File saveFile = new File(saveFolder, saveFilename);
-						try {
-							p.write(saveFile.getCanonicalPath());
-							String saveFileURL = saveFolderURL + "/" + saveFilename;
-							log.info("originalFilename : {}", originalFilename);
-							prod.setProdImg(saveFileURL);
-							return saveFileURL;
-						} catch (IOException e) {
-							throw new RuntimeException(e);
-						}
-					}).collect(Collectors.toList());*/
-//			3.db저장
 		
-		
+		prod.saveTo(saveFolder);
 		
 		Map<String, List<String>> errors = new LinkedHashMap<>();
 		req.setAttribute("errors", errors);

@@ -153,7 +153,7 @@
       MEM_LIKE=#{memLike,jdbcType=VARCHAR},
       MEM_MEMORIAL=#{memMemorial,jdbcType=VARCHAR},
       MEM_MEMORIALDAY=TO_DATE(#{memMemorialday,jdbcType=DATE},'YYYY-MM-DD')
-      <if test="memImg neq null and memImg.length gt 0">
+      <if test="org.apache.commons.lang3.StringUtils@isNotBlank(memImg)">
       ,MEM_IMG= #{memImg,jdbcType=BLOB}
       </if>
    where 
