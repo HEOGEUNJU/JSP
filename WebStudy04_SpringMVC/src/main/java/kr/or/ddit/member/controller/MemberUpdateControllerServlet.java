@@ -49,9 +49,7 @@ public class MemberUpdateControllerServlet{
 		, Model model
 		){
 			MemberVO member = service.retrieveMember(authMember.getMemId());
-			
 			model.addAttribute("member", member);
-			
 			return "member/memberForm";
 	}
 	

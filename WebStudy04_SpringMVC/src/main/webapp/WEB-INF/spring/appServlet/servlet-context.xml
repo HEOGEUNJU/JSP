@@ -21,10 +21,17 @@
 		p:validationMessageSource-ref="messageSource"
 	/>
 <!-- ViewResolver에 prefix와 suffix를 설정하기 위한 bean -->
-	<bean id="IRVR" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/views/"
-		p:suffix=".jsp"
-	/>
+   <bean id="IRVR" class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
+      p:prefix="/WEB-INF/views/"
+      p:suffix=".jsp"
+   />
+   
+   <bean id="BNVR" class="org.springframework.web.servlet.view.BeanNameViewResolver" 
+      p:order="1"
+   />
+   
+   <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+
 <!-- Controller layer를 bean으로 등록하기 위한 필터링 설정 -->
 	<context:component-scan base-package="kr.or.ddit" use-default-filters="false">
 		<context:include-filter type="annotation" 
@@ -49,7 +56,8 @@
 			/>
 		</mvc:interceptor>
 	</mvc:interceptors>
-<!-- 정적자원을 처리하기 위한 방법 -->
+<!-- 정적 자원이 일괄 관리 되는 경우, 정적자원을 처리하기 위한 방법 -->
 	<mvc:resources location="/resources/" mapping="/resources/**" cache-period="0"></mvc:resources>
 <!-- cache-period="0"을 쓰면 서버에서 수정을 하면 바로 클라이언트에게 넘어간다. -->
+<!-- 일괄 처리 안되는 경우에는 <mvc:default-servlet-handler/>사용  -->
 </beans>

@@ -54,8 +54,16 @@
    		<filter-name>MultipartFilter</filter-name>
    		<url-pattern>/*</url-pattern>
    </filter-mapping>
+   <filter>
+  		<filter-name>HiddenHttpMethodFilter</filter-name>
+   		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+   </filter>
+   <filter-mapping>
+   		<filter-name>HiddenHttpMethodFilter</filter-name>
+   		<url-pattern>/*</url-pattern>
+   </filter-mapping>
    
-   <!-- The 유일한 front controller(정문에서 요청 받는 역할) of this Spring Web application, responsible for handling all application requests -->
+<!-- The 유일한 front controller(정문에서 요청 받는 역할) of this Spring Web application, responsible for handling all application requests -->
 <!-- Spring MVC 프로그래밍 모델이 동작하기 위한 하위 컨테이너 생성 -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
@@ -75,6 +83,8 @@
 	<!-- Map all requests to the DispatcherServlet for handling -->
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
+<!-- 	원래 정적자원은 톰캣의 difault servlet이 처리해야하는데 아래 라인 때문에  -->
+<!-- 	그 역할을 할 수 없게됨. 해결책 : servlet-context : 52line-->
 		<url-pattern>/</url-pattern>
 		<url-pattern>/index.do</url-pattern>
 	</servlet-mapping>

@@ -2,14 +2,10 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="kr.or.ddit"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="WebStudy04_SpringMVC"/>
-			<item value="SpringDIContainer"/>
-			<item value="PostgreMaven"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -74,6 +70,8 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\ALBA"/>
+			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\WebStudy04_SpringMVC"/>
 			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace"/>
 			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\WebStudy02_MVN\src\main\webapp\WEB-INF\web.xml"/>
 			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\WebStudy02_MVN\src\test\java\kr\or\ddit\io\SerializationTest.java"/>
@@ -90,10 +88,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="ddit.team2.ALBA"/>
 		</list>
 		<list key="groupId">
+			<item value="ddit.team2"/>
 		</list>
 		<list key="artifactId">
+			<item value="ALBA"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
