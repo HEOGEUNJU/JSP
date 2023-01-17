@@ -20,5 +20,5 @@ public interface BoardService {
 	public int modifyBoard(BoardVO board);
 	public int removeBoard(int boNo);
 	
-	public AttatchVO retrieveForDownload(int attNo);
+	public AttatchVO retrieveFordownload(int attNo);
 }

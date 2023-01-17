@@ -2,11 +2,9 @@ package kr.or.ddit.member.controller;
 
 import java.util.List;
 
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,38 +19,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class MemberListController{
-	
+
 	private final MemberService service;
 	
-	@GetMapping("/member/memberList.do")
+	@RequestMapping("/member/memberList.do")
 	public ModelAndView memberList(
 		@RequestParam(value="page", required=false, defaultValue="1") int currentPage
 		, @ModelAttribute SearchVO simpleCondition
-	){
-		PagingVO<MemberVO> pagingVO = new PagingVO<>(4,2); 
+	) {
+		PagingVO<MemberVO> pagingVO = new PagingVO<>(4,2);
 		pagingVO.setCurrentPage(currentPage);
 		pagingVO.setSimpleCondition(simpleCondition);
 		
 		ModelAndView mav = new ModelAndView();
 		
 		List<MemberVO> memberList = service.retrieveMemberList(pagingVO);
-		mav.addObject("pagingVO" , pagingVO);
-		
+		mav.addObject("pagingVO", pagingVO);
+			
 		log.info("paging data : {}", pagingVO);
 		
 		mav.setViewName("member/memberList");
 		
 		return mav;
+		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

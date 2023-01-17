@@ -7,6 +7,7 @@ public class MemoVO implements Serializable{
 	private String writer;
 	private String content;
 	private String date;
+	
 	public Integer getCode() {
 		return code;
 	}
@@ -31,8 +32,11 @@ public class MemoVO implements Serializable{
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
 	@Override
 	public String toString() {
 		return "MemoVO [code=" + code + ", writer=" + writer + ", content=" + content + ", date=" + date + "]";
 	}
+	
+	
 }

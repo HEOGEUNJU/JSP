@@ -4,8 +4,7 @@ import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.vo.MemberVO;
 
 /**
- * 인증 처리를 위한 Business Logic Layer
- *
+ *	인증 처리를 위한 Business Logic Layer
  */
 public interface AuthenticateService {
 	/**

@@ -1,7 +1,9 @@
 eclipse.preferences.version=1
 firstStartup=false
+history.comment=U2hhcmUgcHJvamVjdCAidGVhbTJfQUxCQSIgaW50byAiaHR0cDovLzExMi4yMjAuMTE0LjEzMDoxMDAwMS9zdm4vcHJvamVjdHMvMjAyMjA4Ri90ZWFtMi9zb3VyY2Ui
 history.repositoryURL=aHR0cDovLzExMi4yMjAuMTE0LjEzMDoxMDAwMS9zdm4vcHJvamVjdHMvMjAyMjA4Ri90ZWFtMi9zb3VyY2U\=
 history.selectCheckoutUrl=aHR0cDovLzExMi4yMjAuMTE0LjEzMDoxMDAwMS9zdm4vcHJvamVjdHMvMjAyMjA4Ri90ZWFtMi9zb3VyY2U\=;aHR0cDovLzExMi4yMjAuMTE0LjEzMDoxMDAwMS9zdm4vcHJvamVjdHMvMjAyMjA4Ri90ZWFtMi8\=
+history.selectProjectNamePage=aHR0cDovLzExMi4yMjAuMTE0LjEzMDoxMDAwMS9zdm4vcHJvamVjdHMvMjAyMjA4Ri90ZWFtMi9zb3VyY2UvdGVhbTJfQUxCQQ\=\=
 org.eclipse.team.svn.ui.lock.LockResourcesPanel.height=414
 org.eclipse.team.svn.ui.lock.LockResourcesPanel.width=470
 org.eclipse.team.svn.ui.panel.ListSelectionPanel.height=195
@@ -14,6 +16,10 @@ org.eclipse.team.svn.ui.panel.common.RepositoryTreePanel.height=203
 org.eclipse.team.svn.ui.panel.common.RepositoryTreePanel.width=470
 org.eclipse.team.svn.ui.panel.local.AddRepositoryPanel.height=109
 org.eclipse.team.svn.ui.panel.local.AddRepositoryPanel.width=470
+org.eclipse.team.svn.ui.panel.local.CommitPanel.height=406
+org.eclipse.team.svn.ui.panel.local.CommitPanel.width=600
+org.eclipse.team.svn.ui.panel.remote.CreateFilePanel.height=204
+org.eclipse.team.svn.ui.panel.remote.CreateFilePanel.width=525
 org.eclipse.team.svn.ui.panel.remote.CreateFolderPanel.height=200
 org.eclipse.team.svn.ui.panel.remote.CreateFolderPanel.width=525
 org.eclipse.team.svn.ui.panel.remote.CreateProjectStructurePanel.height=242

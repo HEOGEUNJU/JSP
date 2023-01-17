@@ -12,10 +12,10 @@ public class MybatisUtils {
 	
 	static {
 		String configPath = "kr/or/ddit/mybatis/mybatis-config.xml";
-		try(
+		try (
 			Reader reader = Resources.getResourceAsReader(configPath);
-		) {
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		){
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader); // singleton 으로 sqlSessionFactory 하나 생성
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

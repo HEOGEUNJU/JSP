@@ -28,21 +28,33 @@ public class GeneratePrincipalFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		HttpSession session = req.getSession();
-		MemberVO authMember =(MemberVO)session.getAttribute("authMember");
+		HttpSession session = req.getSession(false);
+		MemberVO authMember = null;
+		if(session != null) {
+			authMember = (MemberVO) session.getAttribute("authMember");
+		}
+		
 		if(authMember!=null) {
 			HttpServletRequest modifiedReq = new HttpServletRequestWrapper(req) {
 				@Override
 				public Principal getUserPrincipal() {
-					HttpServletRequest adaptee =(HttpServletRequest) getRequest();
-					MemberVO realMember = (MemberVO) adaptee.getSession().getAttribute("authMember");
-					return new MemberVOWrapper(realMember);
+					HttpServletRequest adaptee =  (HttpServletRequest) getRequest();
+					HttpSession session = adaptee.getSession(false);
+					if(session != null) {
+						MemberVO realMember = (MemberVO) session.getAttribute("authMember");
+						return new MemberVOWrapper(realMember);
+					} else {
+						return super.getUserPrincipal();
+					}
+					
+					
 				}
 			};
 			chain.doFilter(modifiedReq, response);
-		}else {
+		} else {
 			chain.doFilter(request, response);
 		}
+		
 	}
 
 	@Override

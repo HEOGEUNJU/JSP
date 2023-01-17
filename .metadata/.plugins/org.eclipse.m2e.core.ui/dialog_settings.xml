@@ -2,10 +2,15 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="ddit.team2"/>
+			<item value="kr.or.ddit"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="HomeWork"/>
+			<item value="ALBA"/>
+			<item value="WebStudy05_SpringBoard"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -70,6 +75,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\source"/>
 			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\ALBA"/>
 			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace\WebStudy04_SpringMVC"/>
 			<item value="D:\A_TeachingMaterial\6.JSP_Spring\workspace"/>
@@ -88,13 +94,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="ddit.team2.ALBA"/>
 		</list>
 		<list key="groupId">
-			<item value="ddit.team2"/>
 		</list>
 		<list key="artifactId">
-			<item value="ALBA"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

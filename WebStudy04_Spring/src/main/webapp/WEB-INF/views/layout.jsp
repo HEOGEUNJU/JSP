@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-	<jsp:include page='${contentPage }' />
+	<jsp:include page='${contentPage}' />
 </div>
 <jsp:include page="/includee/postScript.jsp" flush="false"/>
 </body>

@@ -21,12 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberServiceImpl implements MemberService {
 	
 	@Inject
-	private MemberDAO memberDAO;
+	private MemberDAO memberDAO; // Layer와 의존관계 형성
 	@Inject
-	private AuthenticateService authService;
+	private AuthenticateService authService; // 인증관련된 service
 	@Inject
-	private PasswordEncoder encoder;
-	//inject 주입이 다끝난 후 내용을 찍어보기 위해서 init 메소드에 postconstruct 사용
+	PasswordEncoder encoder;
+	
 	@PostConstruct
 	public void init() {
 		log.info("주입된 객체 : {}, {}, {}", memberDAO, authService, encoder);
@@ -35,15 +35,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public ServiceResult createMember(MemberVO member) {
 		ServiceResult result = null;
-		try {
-			retrieveMember(member.getMemId());
-			result = ServiceResult.PKDUPLICATED;
-		}catch (UserNotFoundException e) {
-			String encoded =encoder.encode(member.getMemPass());
-			member.setMemPass(encoded);
-			int rowcnt = memberDAO.insertMember(member);
-			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
-		}
+		String encoded = encoder.encode(member.getMemPass());
+		member.setMemPass(encoded);
+		int rowcnt = memberDAO.insertMember(member);
+		result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		
 		return result;
 	}
 
@@ -59,10 +55,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO retrieveMember(String memId) {
+	public MemberVO retrieveMember(String memId) throws UserNotFoundException {
 		MemberVO member = memberDAO.selectMember(memId);
-		if(member==null)
-			throw new UserNotFoundException(String.format(memId+"에 해당하는 사용자 없음."));
+		if(member == null) {
+			throw new UserNotFoundException(String.format(memId+"에 해당하는 사용자 없음"));
+		}
 		return member;
 	}
 
@@ -73,9 +70,10 @@ public class MemberServiceImpl implements MemberService {
 		inputData.setMemPass(member.getMemPass());
 		
 		ServiceResult result = authService.authenticate(inputData);
+		
 		if(ServiceResult.OK.equals(result)) {
 			int rowcnt = memberDAO.updateMember(member);
-			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+			result =  rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
 		}
 		return result;
 	}
@@ -83,31 +81,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public ServiceResult removeMember(MemberVO member) {
 		ServiceResult result = authService.authenticate(member);
+		
 		if(ServiceResult.OK.equals(result)) {
 			int rowcnt = memberDAO.deleteMember(member.getMemId());
-			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+			result =  rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
 		}
 		return result;
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

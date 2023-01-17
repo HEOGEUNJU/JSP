@@ -1,19 +1,28 @@
 package kr.or.ddit.board.vo;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Data
 @EqualsAndHashCode(of="attNo")
 @NoArgsConstructor
-public class AttatchVO implements Serializable{
-	private MultipartFile realFile;
+@ToString(exclude="realFile")
+public class AttatchVO implements Serializable {
+	@JsonIgnore
+	private transient MultipartFile realFile;
+	
 	public AttatchVO(MultipartFile realFile) {
 		super();
 		this.realFile = realFile;
@@ -24,12 +33,18 @@ public class AttatchVO implements Serializable{
 		this.attFancysize = FileUtils.byteCountToDisplaySize(attFilesize);
 	}
 	
-	private Long attFilesize;
-	private String attFancysize;
-	private Integer attDownload;
+	
 	private Integer attNo;
 	private Integer boNo;
 	private String attFilename;
 	private String attSavename;
 	private String attMime;
+	private Long attFilesize;
+	private String attFancysize;
+	private Integer attDownload;
+	
+	public void saveTo(File saveFolder) throws IOException {
+		if(realFile==null || realFile.isEmpty()) return;
+		realFile.transferTo(new File(saveFolder, attSavename));
+	}
 }

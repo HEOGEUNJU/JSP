@@ -1,8 +1,7 @@
 package kr.or.ddit.exception;
-
 /**
- * 인증 처리에서 사용할 커스텀 예외(해당 사용자가 존재하지 않을때 발생시킴)
- *
+ *	인증 처리에서 사용할 커스템 예외(해당 사용자가 존재하지 않을 때 발생시킴) 
+ *	
  */
 public class UserNotFoundException extends RuntimeException{
 

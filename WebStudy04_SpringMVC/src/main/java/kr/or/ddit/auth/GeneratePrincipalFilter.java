@@ -30,27 +30,31 @@ public class GeneratePrincipalFilter implements Filter{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession(false);
 		MemberVO authMember = null;
-		if(session!=null) {
-			authMember =(MemberVO)session.getAttribute("authMember");
+		if(session != null) {
+			authMember = (MemberVO) session.getAttribute("authMember");
 		}
+		
 		if(authMember!=null) {
 			HttpServletRequest modifiedReq = new HttpServletRequestWrapper(req) {
 				@Override
 				public Principal getUserPrincipal() {
-					HttpServletRequest adaptee =(HttpServletRequest) getRequest();
-					HttpSession session = adaptee.getSession(false); // 아직 세션이 없으면 만들지 말아라.
-					if(session!=null) {
+					HttpServletRequest adaptee =  (HttpServletRequest) getRequest();
+					HttpSession session = adaptee.getSession(false);
+					if(session != null) {
 						MemberVO realMember = (MemberVO) session.getAttribute("authMember");
 						return new MemberVOWrapper(realMember);
-					}else {
+					} else {
 						return super.getUserPrincipal();
 					}
+					
+					
 				}
 			};
 			chain.doFilter(modifiedReq, response);
-		}else {
+		} else {
 			chain.doFilter(request, response);
 		}
+		
 	}
 
 	@Override

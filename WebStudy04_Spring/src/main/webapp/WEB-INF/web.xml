@@ -3,10 +3,22 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
-	<display-name>WebStudy04_Spring</display-name>
+	<display-name>WebStudy04_SpringMVC</display-name>
 	<welcome-file-list>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
+	
+	
+	<!-- 상위 컨테이너에 등록할 bean definition 이 등록된 설정 파일의 위치. -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/*-context.xml</param-value>
+	</context-param>
+
+	<!-- ServletContext initialized 이벤트에서 상위 컨테이너 생성을 위한 이벤트 핸들러 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 	
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
@@ -32,32 +44,6 @@
 		<filter-name>GeneratePrincipalFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-<!-- 	<filter> -->
-<!-- 		<filter-name>AuthenticationFilter</filter-name> -->
-<!-- 		<filter-class>kr.or.ddit.auth.AuthenticationFilter</filter-class> -->
-<!-- 		<init-param> -->
-<!-- 			<param-name>filePath</param-name> -->
-<!-- 			<param-value>/kr/or/ddit/SecuredResources.properties</param-value> -->
-<!-- 		</init-param> -->
-<!-- 	</filter> -->
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>AuthenticationFilter</filter-name> -->
-<!-- 		<url-pattern>/*</url-pattern> -->
-<!-- 	</filter-mapping> -->
-	
-<!-- 	<filter> -->
-<!-- 		<filter-name>AuthorizationFilter</filter-name> -->
-<!-- 		<filter-class>kr.or.ddit.auth.AuthorizationFilter</filter-class> -->
-<!-- 		<init-param> -->
-<!-- 			<param-name>filePath</param-name> -->
-<!-- 			<param-value>/kr/or/ddit/SecuredResources.properties</param-value> -->
-<!-- 		</init-param> -->
-<!-- 	</filter> -->
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>AuthorizationFilter</filter-name> -->
-<!-- 		<url-pattern>/*</url-pattern> -->
-<!-- 	</filter-mapping> -->
 	<filter>
 		<filter-name>MultipartFilter</filter-name>
 		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
@@ -67,19 +53,22 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
 	<servlet>
-		<servlet-name>frontController</servlet-name>
+		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
-		<multipart-config>
-			<location>D:/filetemp</location>
-			
-		</multipart-config>
+		<multipart-config></multipart-config>
 	</servlet>
+
+	<!-- Map all requests to the DispatcherServlet for handling -->
 	<servlet-mapping>
-		<servlet-name>frontController</servlet-name>
+		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
-		<url-pattern>/memo/*</url-pattern>
-		<url-pattern>/index.do</url-pattern>
 	</servlet-mapping>
+	
 </web-app>

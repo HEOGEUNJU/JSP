@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,18 +16,22 @@
 </head>
 <body>
 	<h4>가입 양식</h4>
-	<form method="post" enctype="multipart/form-data">
-		<table class="table table-bordered">
+	<form:form modelAttribute="member" enctype="multipart/form-data">
+		<!-- action 생략하면 form 올때까지의 client의 주소로 action 설정됨 -->
+		<table>
 			<tr>
 				<th>회원아이디</th>
-				<td><input class="form-control" type="text" 
-					name="memId" value="${member.memId}" /><span class="text-danger">${errors.memId}</span></td>
+				<td>
+					<form:input path="memId" cssClass="form-control"/>
+					<span class="text-danger">${errors.memId}</span>
+				</td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
 				<td><input class="form-control" type="text" 
-					name="memPass" value="${member.memPass}" /><span
-					class="text-danger">${errors.memPass}</span></td>
+					name="memPass" value="${member.memPass}" />
+					<span class="text-danger">${errors.memPass}</span>
+				</td>
 			</tr>
 			<tr>
 				<th>회원명</th>
@@ -37,8 +42,8 @@
 			<tr>
 				<th>회원프로필</th>
 				<td>
-					<input type="file" name="memImage" accept="image/*" value="${member.memImg}"/>
-					<span class ="text-danger">${errors.memImage }</span>
+					<input type="file" name="memImage" accept="image/*"/>
+					<span class="text-danger">${errors.memImage }</span>
 				</td>
 			</tr>
 			<tr>
@@ -125,11 +130,11 @@
 					value="${member.memDelete}" /><span class="text-danger">${errors.memDelete}</span></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" class="btn btn-success"
-					value="저장"></td>
+				<th>확인</th>
+				<td><input type="submit"></td>
 			</tr>
 		</table>
-	</form>
+	</form:form>
 	<jsp:include page="/includee/postScript.jsp" />
 </body>
 </html>

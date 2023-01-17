@@ -15,11 +15,12 @@ public class SampleView {
 	public static void main(String[] args) {
 //		SampleDAO dao = new SampleDAOImpl_Postgre();
 //		SampleService service = new SampleServiceImpl(dao);
-		ApplicationContext context = 
+		ApplicationContext context =
 				new ClassPathXmlApplicationContext(
 						"kr/or/ddit/sample/conf/Parent-Context.xml"
 						, "kr/or/ddit/sample/conf/auto/SampleAutoDI-Context.xml"
-						);
+						, "kr/or/ddit/sample/conf/auto/Aop-Context.xml"
+				);
 		SampleService service = context.getBean(SampleService.class);
 		StringBuffer model = service.retrieveInformation("PK_2");
 		System.out.println(model);

@@ -2,17 +2,17 @@ package kr.or.ddit.login.controller;
 
 import javax.servlet.http.HttpSession;
 
-import kr.or.ddit.mvc.annotation.RequestMethod;
-import kr.or.ddit.mvc.annotation.stereotype.Controller;
-import kr.or.ddit.mvc.annotation.stereotype.RequestMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class LogoutController{
-	@RequestMapping(value="/login/logout.do", method=RequestMethod.POST)
-	public String process(HttpSession session){
+public class LogoutController {
+	@PostMapping("/login/logout.do")
+	public String logout(HttpSession session) {
 //		session.removeAttribute("authMember");
-		session.invalidate();
+		session.invalidate(); // session속성 삭제, 현재 페이지 session 강제로 만료
 		
 		return "redirect:/";
+		
 	}
 }

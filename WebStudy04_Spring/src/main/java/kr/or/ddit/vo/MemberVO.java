@@ -24,41 +24,41 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * VO(Value Object), DTO(Data Transfer Object), Java Bean, Model
- * 
- * JavaBean 규약
- * 1. 값을 담을 수 있는 property 정의
- * 2. property 캡슐화
- * 3. 캡슐화된 프로퍼티에 접근할 수 있는 인터페이스 제공 getter/setter
- * 		get[set] + 프로퍼티명의 첫문자를 대문자로 -> camel case
- * 4. 객체의 상태 비교 방법 제공 : equals
- * 		==,  equals
- * 5. 객체의 상태 확인 방법 제공 : toString
- * 6. 객체 직렬화 가능
- * 
- * 회원관리를 위한 Domain Layer
- *  : 한사람의 회원 정보(구매기록 포함)를 담기 위한 객체.
- *    MEMBER(1) : PROD(N) -> HAS MANY
- *    1 : 1 -> HAS A
- *    
- *  ** 데이터매퍼나 ORM 을 이용한 테이블 조인 방법
- *    ex) 회원 정보 상세 조회시 구매 상품 기록을 함께 조회함.
- *  1. 대상 테이블 선택
- *     MEMBER, CART(CART_MEMBER, CART_PROD), PROD   
- *  2. 각테이블로부터 데이터를 바인딩할 vo 설계
- *     MemberVO, ProdVO
- *  3. 각테이블의 relation 을 VO 사이에 has 관계로 반영
- *  	1(main):N -> has many , MemberVO has many ProdVO(collection)
- *  	1(main):1 -> has a    , ProdVO has a BuyerVO
- *  4. resultType 대신 resultMap 으로 바인딩 설정.
- *     has many : collection
- *     has a    : association
+ *	VO(Value Object), DTO(Data Transfer Object), Java Bean, Model
+ *	
+ *	JavaBean 규약
+ *	1. 값을 담을 수 있는 property 정의
+ *	2. property 캡슐화
+ *	3. 캡슐화된 프로퍼티에 접근할 수 있는 인터페이스 제공 getter/setter
+ *		get[set] + 프로퍼티명의 첫문자를 대문자로 -> camel case
+ *	4. 객체의 상태 비교 방법 제공 : equals
+ *		==,	equals
+ *	5. 객체의 상태 확인 방법 제공 : toString
+ *	6. 객체 직렬화 가능
+ *
+ *	회원관리를 위한 Domain Layer
+ *	: 한 사람의 회원 정보(구매기록 포함)를 담기 위한 객체.
+ *		MEMBER(1) : PROD(N) -> HAS MANY
+ *		1 : 1 -> HAS A
+ *	
+ *	** 데이터매퍼나 ORM(JPA) 을 이용한 테이블 조인 방법
+ *		ex) 회원 정보 상세 조회시 구매 상품 기록을 함께 조회함.
+ *	1. 대상 테이블 선택
+ *		MEMBER, CART(CART_MEMBER, CART_PROD) ,PROD
+ *	2. 각 테이블로부터 데이터를 바인딩할 vo 설계
+ *		MemberVO, ProdVO
+ *	3. 각 테이블의 relation을 VO 사이에 has 관계로 반영
+ *		1(main):N -> has many, MemberVO has many ProdVO(collection)
+ *		1(main):1 -> has a	 , ProdVO has a BuyerVO
+ *	4. resultType 대신 resultMap 으로 바인딩 설정.
+ *	   has many : collection
+ *	   has a 	: association 		
  */
 //@Getter
 //@Setter
 @ToString(exclude= {"memPass", "memRegno1", "memRegno2"})
 @EqualsAndHashCode(of="memId")
-@Data
+@Data // javabean 규약을 만족시키는 annotaion
 @NoArgsConstructor
 public class MemberVO implements Serializable{
 	
@@ -68,7 +68,7 @@ public class MemberVO implements Serializable{
 		super();
 		this.memId = memId;
 		this.memPass = memPass;
-	}
+	}	
 	
 	private int rnum;
 	
@@ -91,7 +91,7 @@ public class MemberVO implements Serializable{
 	private String memZip;
 	@NotBlank
 	private String memAdd1;
-	@NotBlank
+	@NotBlank // String type에는 사용불가
 	private String memAdd2;
 	private String memHometel;
 	private String memComtel;
@@ -108,7 +108,7 @@ public class MemberVO implements Serializable{
 	private boolean memDelete;
 	
 	private int cartCount;
-
+	
 	private List<ProdVO> prodList; // has many 관계 (1:N)
 	
 	private String memRole;
@@ -117,31 +117,18 @@ public class MemberVO implements Serializable{
 	private MultipartFile memImage;
 	
 	public void setMemImage(MultipartFile memImage) throws IOException {
-	  if(memImage!=null && !memImage.isEmpty()) {
-            //2진데이터와 분리하지 않는게 핵심
-		  	this.memImage = memImage;
-            this.memImg = memImage.getBytes();
-         }
+		if(memImage != null && !memImage.isEmpty()) {
+			this.memImage = memImage;
+			this.memImg = memImage.getBytes();
+		}
 	}
 	
 	public String getBase64MemImg() {
-		if(memImg!=null)
+		if(memImg!=null) {
 			return Base64.getEncoder().encodeToString(memImg);
-		else
+		} else {
 			return null;
+		}
+
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

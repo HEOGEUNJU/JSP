@@ -3,6 +3,11 @@ package kr.or.ddit.vo;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import kr.or.ddit.validate.InsertGroup;
+import kr.or.ddit.validate.UpdateGroup;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,9 +15,12 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of="buyerId")
 public class BuyerVO implements Serializable{
 	private int rnum;
+	@NotBlank(groups=UpdateGroup.class)
 	private String buyerId;
+	@NotBlank(groups=InsertGroup.class)
 	private String buyerName;
 	
+	@NotBlank(groups=InsertGroup.class)
 	private String buyerLgu;
 	private String lprodNm;
 	
@@ -22,8 +30,12 @@ public class BuyerVO implements Serializable{
 	private String buyerZip;
 	private String buyerAdd1;
 	private String buyerAdd2;
+	@NotBlank
 	private String buyerComtel;
+	@NotBlank
 	private String buyerFax;
+	@NotBlank
+	@Email
 	private String buyerMail;
 	private String buyerCharger;
 	

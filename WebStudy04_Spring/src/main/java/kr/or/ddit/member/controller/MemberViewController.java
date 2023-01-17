@@ -1,67 +1,45 @@
 package kr.or.ddit.member.controller;
 
-import java.io.IOException;
+import javax.inject.Inject;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.ddit.member.service.MemberService;
-import kr.or.ddit.member.service.MemberServiceImpl;
-import kr.or.ddit.mvc.annotation.resolvers.RequestParam;
-import kr.or.ddit.mvc.annotation.stereotype.Controller;
-import kr.or.ddit.mvc.annotation.stereotype.RequestMapping;
 import kr.or.ddit.vo.MemberVO;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Controller
-public class MemberViewController{
-	private MemberService service = new MemberServiceImpl();
+public class MemberViewController {
+	
+	private final MemberService service;
+	
+//	void 리턴 타입으로 local view name 이 생략된 경우
+//	HandlerAdapter 는 RequestToViewNameTranslator 를 이용해 view를 검색함
+	
 	
 	@RequestMapping("/member/memberView.do")
-	public String memberView(
-		@RequestParam(value="who", required=true) String memId
-		, HttpServletRequest req
-	) {
-//		1. 
+	public void memberView(
+			@RequestParam(value="who", required=true) String memId
+			, Model model
+			) {
+//		1.
 //		String memId = req.getParameter("who");
 //		if(StringUtils.isBlank(memId)) {
 //			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
 //			return null;
 //		}
-//		2. 
+//		2.
 		MemberVO member = service.retrieveMember(memId);
-//		3. 
-		req.setAttribute("member", member);
+//		3.
+		model.addAttribute("member", member);
+
 //		4.
-		String viewName = "member/memberView";
-		
-		return viewName;
+//		String viewName = "member/memberView";
+//		5.
+//		return viewName;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

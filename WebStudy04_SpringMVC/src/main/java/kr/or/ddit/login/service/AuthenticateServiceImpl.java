@@ -13,43 +13,43 @@ import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.exception.UserNotFoundException;
 import kr.or.ddit.member.dao.MemberDAO;
 import kr.or.ddit.vo.MemberVO;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 public class AuthenticateServiceImpl implements AuthenticateService {
 	
-	@Inject
 	private MemberDAO memberDAO;
 	
+	@Inject
 	public AuthenticateServiceImpl(MemberDAO memberDAO) {
 		super();
 		this.memberDAO = memberDAO;
 	}
-	@Resource(name ="passwordEncoder")
+	
+	@Resource(name="passwordEncoder")
 	private PasswordEncoder encoder;
 	
 	@Override
 	public ServiceResult authenticate(MemberVO member) {
+
 		MemberVO savedMember = memberDAO.selectMember(member.getMemId());
-		if(savedMember==null ||  savedMember.isMemDelete())
+		if (savedMember == null || savedMember.isMemDelete()) {
 			throw new UserNotFoundException(String.format("%s 사용자 없음.", member.getMemId()));
-		String inputPass = member.getMemPass();
-		String savedPass = savedMember.getMemPass();
+		}
+		String inputPass = member.getMemPass(); // 사용자가 입력한 비밀번호
+		String savedPass = savedMember.getMemPass(); // DB에 저장되어있는 비밀번호
 		ServiceResult result = null;
-		log.info("inputPass : {}", encoder.encode(inputPass));
-		if(encoder.matches(inputPass, savedPass)) {
-			
-//			member.setMemName(savedMember.getMemName());
+
+		if (encoder.matches(inputPass, savedPass)) {
+
+			// member.setMemName(savedMember.getMemName());
 			try {
 				BeanUtils.copyProperties(member, savedMember);
 				result = ServiceResult.OK;
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				throw new RuntimeException(e);
 			}
-			
-			
-		}else {
+
+		} else {
 			result = ServiceResult.INVALIDPASSWORD;
 		}
 		return result;
