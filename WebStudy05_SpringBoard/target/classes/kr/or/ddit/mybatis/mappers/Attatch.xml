@@ -10,7 +10,6 @@
          SELECT NVL(MAX(ATT_NO),0)+1
          FROM ATTATCH
       </selectKey>
-      
       INSERT ALL
       
       <foreach collection="attatchList" item="attatch" index="idx">
@@ -34,9 +33,16 @@
          , 0
       )
       </foreach>
-   
-   
       
       SELECT * FROM DUAL
    </insert>
+   
+   
+   <delete id="deleteAttatchs" parameterType="BoardVO">
+   		DELETE FROM ATTATCH
+   		WHERE ATT_NO IN 
+   		<foreach collection="delAttNos" item="attNo" open="(" close=")" separator=",">
+   			#{attNo}
+   		</foreach>
+   </delete>
 </mapper>

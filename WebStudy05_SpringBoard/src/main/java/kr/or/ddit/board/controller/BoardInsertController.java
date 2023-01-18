@@ -48,7 +48,6 @@ public class BoardInsertController {
       @Validated(InsertGroup.class) @ModelAttribute("board") BoardVO board
       , Errors errors
       , Model model
-      , @RequestPart MultipartFile[] boFiles
       ) {
       
       boolean valid = !errors.hasErrors();

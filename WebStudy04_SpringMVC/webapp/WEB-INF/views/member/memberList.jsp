@@ -65,11 +65,10 @@
       </tr>
    </tfoot>
 </table>
-<h4>Hidden Form</h4>
 <form id="searchForm">
-	<input type="text" name="page" />
-	<input type="text" name="searchType" />
-	<input type="text" name="searchWord" />
+	<input type="hidden" name="page" />
+	<input type="hidden" name="searchType" />
+	<input type="hidden" name="searchWord" />
 </form>
 <script>
 	$("[name=searchType]").val("${searchVO.searchType}");

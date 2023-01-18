@@ -32,19 +32,7 @@ public class ProdInsertController {
    
    @Inject
    private ProdService service;
-    @Inject
-   private OthersDAO othersDAO;
-
-    
-    @ModelAttribute("lprodList")
-    public List<Map<String, Object>> buyerList() {
-       return othersDAO.selectLprodList();
-    }
-    
-    @ModelAttribute("buyerList")
-    public List<BuyerVO> lprodList() {
-       return othersDAO.selectBuyerList(null);
-    }
+   
     
     @ModelAttribute("prod")
     public ProdVO prod() {

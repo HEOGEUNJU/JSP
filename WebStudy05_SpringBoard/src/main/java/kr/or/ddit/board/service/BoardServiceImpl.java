@@ -2,11 +2,13 @@ package kr.or.ddit.board.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.ddit.board.dao.AttatchDAO;
 import kr.or.ddit.board.dao.BoardDAO;
+import kr.or.ddit.board.exception.AuthenticationException;
 import kr.or.ddit.board.exception.NotExistBoardException;
 import kr.or.ddit.board.vo.AttatchVO;
 import kr.or.ddit.board.vo.BoardVO;
@@ -97,8 +100,35 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int modifyBoard(BoardVO board) {
-		// TODO Auto-generated method stub
-		return 0;
+		BoardVO savedBoard = boardDAO.selectBoard(board.getBoNo());
+		if(savedBoard==null)
+			throw new NotExistBoardException(board.getBoNo());
+		boardAuthenticate(board.getBoPass(), savedBoard.getBoPass());
+//		1. board update
+		int rowcnt =boardDAO.updateBoard(board);
+//		2. new attatch insert(metadata, binary)
+		rowcnt += processAttatchList(board);
+		int[] delAttnos = board.getDelAttNos();
+		if(delAttnos!=null && delAttnos.length>0) {
+//		3. delete attatch(metadata, binary)
+			Arrays.sort(delAttnos);
+			rowcnt += attatchDAO.deleteAttatchs(board);
+			String[] delAttSavenames = savedBoard.getAttatchList().stream()
+												.filter(attatch->{
+													return Arrays.binarySearch(delAttnos, attatch.getAttNo()) >=0;
+												}).map(AttatchVO::getAttSavename)
+												.toArray(String[]::new);
+			for(String saveName : delAttSavenames) {
+				FileUtils.deleteQuietly(new File(saveFiles, saveName));
+			}
+		}
+		return rowcnt;
+	}
+	//게시글 삭제에서도 사용하려고 인증을 밖으로 뺌
+	private void boardAuthenticate(String inputPass, String savedPass) {
+		if(!encoder.matches(inputPass, savedPass)) {
+			throw new AuthenticationException("비밀번호 인증 실패");
+		};
 	}
 
 	@Override

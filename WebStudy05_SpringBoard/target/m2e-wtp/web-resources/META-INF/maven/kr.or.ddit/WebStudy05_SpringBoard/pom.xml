@@ -11,6 +11,7 @@
 		<com.fasterxml.jackson-version>2.14.1</com.fasterxml.jackson-version>
 		<org.apache.logging.log4j-version>2.19.0</org.apache.logging.log4j-version>
 		<org.springframework-version>4.3.25.RELEASE</org.springframework-version>
+		<org.springframework.security-version>4.2.15.RELEASE</org.springframework.security-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 	</properties>
 	<build>
@@ -82,8 +83,13 @@
 		<!-- 암호화 지원 -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-crypto</artifactId>
-			<version>4.2.15.RELEASE</version>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${org.springframework.security-version}</version>
 		</dependency>
 
 		<dependency>

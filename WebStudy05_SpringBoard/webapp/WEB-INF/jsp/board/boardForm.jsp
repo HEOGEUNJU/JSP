@@ -48,10 +48,16 @@
    <tr>
   		<th>첨부파일</th>
   		<td>
+<%--   		 <c:forEach items="${board.attatchList }" var="attatch" varStatus="vs"> --%>
+<%--   			<form:input path="attFilename" type="text" cssClass="form-control" /> --%>
+<%--   		</c:forEach> 	 --%>
   			<input type="file" name="boFiles" />
   			<input type="file" name="boFiles" />
   			<input type="file" name="boFiles" />
   		</td>
+<%--             <c:forEach items="${board.attatchList }" var="attatch" varStatus="vs"> --%>
+<%--                ${attatch.attFilename } ${vs.last ? "" : "," } --%>
+<%--             </c:forEach> 		 --%>
    </tr>
    <tr>
       <th>내용</th>

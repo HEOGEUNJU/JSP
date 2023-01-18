@@ -31,18 +31,6 @@ public class ProdListController {
 	@Inject
 	private ProdService service;
 
-	@Inject
-	private OthersDAO othersDAO;
-
-	@ModelAttribute("lprodList")
-	public List<Map<String, Object>> lprodList() {
-		return othersDAO.selectLprodList();
-	}
-
-	@ModelAttribute("buyerList")
-	public List<BuyerVO> buyerList() {
-		return othersDAO.selectBuyerList(null);
-	}
 
 	@GetMapping
 	public String listUI(Model model) {

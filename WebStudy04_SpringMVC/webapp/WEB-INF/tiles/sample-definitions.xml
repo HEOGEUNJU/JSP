@@ -14,10 +14,7 @@
   <definition name="prod/*" extends="parent" preparer="prodViewPreparer">
      <put-attribute name="content" value="/WEB-INF/views/prod/{1}.jsp" />
   </definition>
-  <definition name="index" extends="parent" >
-     <put-attribute name="content" value="/WEB-INF/views/index.jsp" />
-  </definition>
-  <definition name="login" extends="parent" >
-     <put-attribute name="content" value="/login/loginForm.jsp" />
+  <definition name="layout" extends="parent" >
+     <put-attribute name="content" value="/WEB-INF/views/layout.jsp" />
   </definition>
 </tiles-definitions>
