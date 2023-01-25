@@ -19,10 +19,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
+
 @ContextHierarchy({
 	@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/*-context.xml")
 	, @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml")
 })
+
 @WebAppConfiguration
 public class MemberListControllerTest {
 	
@@ -30,7 +32,7 @@ public class MemberListControllerTest {
 	private WebApplicationContext context;
 	
 	private MockMvc mockMvc;
-
+	
 	@Before
 	public void setUp() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
@@ -46,14 +48,3 @@ public class MemberListControllerTest {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-

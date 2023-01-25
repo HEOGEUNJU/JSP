@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController{
 	
 	@RequestMapping("/index.do")
-	public String index(HttpServletRequest req){
-		return "index";
+	public String index(HttpServletRequest req) {
+		req.setAttribute("contentPage", "/WEB-INF/views/index.jsp");
+		return "layout";
 	}
 }

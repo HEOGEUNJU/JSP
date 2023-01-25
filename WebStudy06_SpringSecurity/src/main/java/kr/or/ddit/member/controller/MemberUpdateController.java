@@ -2,62 +2,71 @@ package kr.or.ddit.member.controller;
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.member.service.MemberService;
-import kr.or.ddit.validate.UpdateGroup;
+import kr.or.ddit.validate.InsertGroup;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.ProdVO;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/member/memberUpdate.do")
 public class MemberUpdateController{
-	private final MemberService service;
 	
-	@Resource(name="authenticationManager")
-	private AuthenticationManager authenticationManager;
+	private final MemberService service;
 	
 	@GetMapping
 	public String updateForm(
-		@AuthenticationPrincipal(expression="realMember") MemberVO authMember
-		, Model model
-	) {
+//			HttpSession session
+			Model model
+			, @SessionAttribute("authMember") MemberVO authMember
+		) {
 		
 		MemberVO member = service.retrieveMember(authMember.getMemId());
 		
 		model.addAttribute("member", member);
 		
 		return "member/memberForm";
-		
+
 	}
-	
 	
 	@PostMapping
 	public String updateProcess(
-		@Validated(UpdateGroup.class) @ModelAttribute("member") MemberVO member
-		, BindingResult errors
-		, Model model
-		, HttpSession session
-	) throws IOException{
-		String viewName = null;
+			@Validated(InsertGroup.class) @ModelAttribute("member") MemberVO member
+			, BindingResult errors
+			, @Valid ProdVO prod
+			, Model model
+			, HttpSession session
+		) throws IOException {
 		
+		// @ModelAttribute("member") MemberVO member 사용으로 필요 없어짐
+//		MemberVO member = new MemberVO();
+//		req.setAttribute("member", member);
+//		
+//		Map<String, String[]> parameterMap = req.getParameterMap();
+//		try {
+//			BeanUtils.populate(member, parameterMap); // 객체에 property setting
+//		} catch (IllegalAccessException | InvocationTargetException e) {
+//			throw new ServletException(e);
+//		}
+		String viewName = null;
 		
 		if(!errors.hasErrors()) {
 			ServiceResult result = service.modifyMember(member);
@@ -66,50 +75,22 @@ public class MemberUpdateController{
 				model.addAttribute("message", "비밀번호 오류");
 				viewName = "member/memberForm";
 				break;
+				
 			case FAIL:
-				model.addAttribute("message", "서버 오류, 쫌따 다시.");
+				model.addAttribute("message", "서버 오류, 쫌따 다시");
 				viewName = "member/memberForm";
 				break;
 				
 			default:
 				
-//				MemberVO modifiedMember = service.retrieveMember(member.getMemId());
-//				session.setAttribute("authMember", modifiedMember);
-				
-				Authentication inputData = new UsernamePasswordAuthenticationToken(member.getMemId(), member.getMemPass());
-				Authentication modifiedAuthentication = authenticationManager.authenticate(inputData);
-				SecurityContextHolder.getContext().setAuthentication(modifiedAuthentication);
-				
+				MemberVO modifiedMember = service.retrieveMember(member.getMemId());
+				session.setAttribute("authMember", modifiedMember);
 				viewName = "redirect:/mypage.do";
 				break;
 			}
-		}else {
+		} else {
 			viewName = "member/memberForm";
 		}
-		
 		return viewName;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

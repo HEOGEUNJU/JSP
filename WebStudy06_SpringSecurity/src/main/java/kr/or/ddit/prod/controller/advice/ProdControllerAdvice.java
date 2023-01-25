@@ -15,13 +15,14 @@ import kr.or.ddit.vo.BuyerVO;
 public class ProdControllerAdvice {
 	@Inject
 	private OthersDAO othersDAO;
-	
-	@ModelAttribute("lprodList")
-	public List<Map<String, Object>> lprodList() {
-		return othersDAO.selectLprodList();
-	}
-	@ModelAttribute("buyerList")
-	public List<BuyerVO> buyerList() {
-		return othersDAO.selectBuyerList(null);
-	}
+
+    @ModelAttribute("lprodList")
+    public List<Map<String, Object>> buyerList() {
+       return othersDAO.selectLprodList();
+    }
+    
+    @ModelAttribute("buyerList")
+    public List<BuyerVO> lprodList() {
+       return othersDAO.selectBuyerList(null);
+    }
 }

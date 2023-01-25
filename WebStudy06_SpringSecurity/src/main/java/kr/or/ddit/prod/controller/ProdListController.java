@@ -24,50 +24,33 @@ import kr.or.ddit.vo.ProdVO;
 
 @Controller
 @RequestMapping("/prod")
-public class ProdListController{
+public class ProdListController {
 	@Resource(name="bootstrapPaginationRender")
 	private PaginationRenderer renderer;
 	
 	@Inject
 	private ProdService service;
-	
+
+
 	@GetMapping
-	public String listUI() {
+	public String listUI(Model model) {
 		return "prod/prodList";
 	}
-	
-	@GetMapping(produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public String listData(
-		@RequestParam(value="page", required=false, defaultValue="1") int currentPage
-		, @ModelAttribute("detailCondition") ProdVO detailCondition
-		, Model model
-	) throws ServletException {
+
+	@GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public String listData(@RequestParam(value = "page", required = false, defaultValue = "1") int currentPage,
+			@ModelAttribute("detailCondition") ProdVO detailCondition, Model model) throws ServletException {
+		// 데이터 요청했을때
 		PagingVO<ProdVO> pagingVO = new PagingVO<>(5, 2);
 		pagingVO.setCurrentPage(currentPage);
 		pagingVO.setDetailCondition(detailCondition);
-		
+
 		service.retrieveProdList(pagingVO);
 		model.addAttribute("pagingVO", pagingVO);
-		if(!pagingVO.getDataList().isEmpty())
-			model.addAttribute("pagingHTML", renderer.renderPagination(pagingVO));
-		
-		return "jsonView";
-		
+		model.addAttribute("pagingHTML", renderer.renderPagination(pagingVO));
+
+		return "jsonView"; // 서블릿에서 또다른 서블릿으로 가는 거 식별
 	}
-	
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -18,26 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/datasource-context.xml")
 @WebAppConfiguration
 public class DataSourceTest {
-	
+
 	@Inject
 	private DataSource dataSource;
-
+	
 	@Test
 	public void test() {
 		log.info("주입된 DataSource : {}", dataSource);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

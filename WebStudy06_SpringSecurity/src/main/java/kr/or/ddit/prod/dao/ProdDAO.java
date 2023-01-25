@@ -3,6 +3,7 @@ package kr.or.ddit.prod.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.SqlSession;
 
 import kr.or.ddit.vo.PagingVO;
 import kr.or.ddit.vo.ProdVO;
@@ -15,12 +16,15 @@ public interface ProdDAO {
 	 */
 	public ProdVO selectProd(String prodId);
 	
+	
 	/**
 	 * 검색 조건에 맞는 레코드 수 반환
 	 * @param pagingVO
 	 * @return
 	 */
 	public int selectTotalRecord(PagingVO<ProdVO> pagingVO);
+
+	
 	/**
 	 * 검색 조건과 현재 페이지에 맞는 상품 목록 조회
 	 * @param pagingVO
@@ -44,24 +48,3 @@ public interface ProdDAO {
 	
 //	public int deleteProd(String prodId);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

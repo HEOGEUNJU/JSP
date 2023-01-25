@@ -8,10 +8,10 @@ import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.PagingVO;
 
 /**
- * 회원관리(CRUD)를 위한 Business Logic Layer
+ *	회원관리를(CRUD) 위한 Business Logic Layer
  */
 public interface MemberService {
-
+	
 	/**
 	 * 회원 가입
 	 * @param member
@@ -20,40 +20,25 @@ public interface MemberService {
 	public ServiceResult createMember(MemberVO member);
 	
 	public List<MemberVO> retrieveMemberList(PagingVO<MemberVO> pagingVO);
+	
 	/**
 	 * 회원 정보 상세 조회
 	 * @param memId
-	 * @return 존재하지 않는 경우, {@link UserNotFoundException} 발생.
+	 * @return 존재하지 않는 경우, {@link UserNotFoundException} 발생. 
 	 */
-	public MemberVO retrieveMember(String memId);
+	public MemberVO retrieveMember(String memId) throws UserNotFoundException; // unchecked exception 
+	
 	/**
 	 * 회원 수정
 	 * @param member
-	 * @return 존재 부(NOTEXIST), 비번 인증 실패(INVALIDPASSWORD), 성공(OK), 실패(FAIL)
+	 * @return 존재부(NOTEXIST), 비번 인증 실패(INVALIDPASSWORD), 성공(OK), 실패(FAIL)
 	 */
 	public ServiceResult modifyMember(MemberVO member);
+	
 	/**
 	 * 회원 탈퇴
 	 * @param memId
-	 * @return 존재 부(NOTEXIST), 비번 인증 실패(INVALIDPASSWORD), 성공(OK), 실패(FAIL)
+	 * @return 존재부(NOTEXIST), 비번 인증 실패(INVALIDPASSWORD), 성공(OK), 실패(FAIL)
 	 */
 	public ServiceResult removeMember(MemberVO member);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

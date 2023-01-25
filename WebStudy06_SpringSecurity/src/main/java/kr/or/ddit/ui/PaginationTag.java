@@ -14,14 +14,17 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import kr.or.ddit.vo.PagingVO;
 
 public class PaginationTag extends TagSupport{
+	
 	private String type;
 	public void setType(String type) {
 		this.type = type;
 	}
+	
 	private PagingVO<?> pagingVO;
 	public void setPagingVO(PagingVO<?> pagingVO) {
 		this.pagingVO = pagingVO;
 	}
+	
 	
 	@Override
 	public int doEndTag() throws JspException {
@@ -43,17 +46,5 @@ public class PaginationTag extends TagSupport{
 		} catch (IOException e) {
 			throw new JspException(e);
 		}
-		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

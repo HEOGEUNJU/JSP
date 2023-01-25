@@ -8,14 +8,14 @@ import kr.or.ddit.AbstractTestCase;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MemberDAOTest extends AbstractTestCase{
-	
+public class MemberDAOTest extends AbstractTestCase {
+
 	@Inject
-	private MemberDAO memberDAO;
+	private MemberDAO memberDao;
 
 	@Test
 	public void test() {
-		log.info("주입된 객체 : {}", memberDAO);
+		log.info("주입된 객체 : {}", memberDao);
 	}
 
 }

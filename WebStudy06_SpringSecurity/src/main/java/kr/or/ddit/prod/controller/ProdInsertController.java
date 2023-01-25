@@ -1,18 +1,23 @@
 package kr.or.ddit.prod.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.prod.dao.OthersDAO;
@@ -22,56 +27,49 @@ import kr.or.ddit.vo.BuyerVO;
 import kr.or.ddit.vo.ProdVO;
 
 @Controller
-public class ProdInsertController{
-	
-	@Inject
-	private ProdService service;
-	
-	@ModelAttribute("prod")
-	public ProdVO prod() {
-		return new ProdVO();
-	}
-	
-	@RequestMapping("/prod/prodInsert.do")
-	public String prodForm(){
-		return "prod/prodForm";
-	}
+@RequestMapping("/prod/prodInsert.do")
+public class ProdInsertController {
+   
+   @Inject
+   private ProdService service;
+   
+    
+    @ModelAttribute("prod")
+    public ProdVO prod() {
+       return new ProdVO();
+    }
+    
 
-	@RequestMapping(value="/prod/prodInsert.do", method=RequestMethod.POST)
-	public String insertProcess(
-		@Validated(InsertGroup.class) @ModelAttribute("prod") ProdVO prod	 // command object
-		, Errors errors 
-		, Model model
-	) throws IOException {
-		String viewName = null;
-		if(!errors.hasErrors()) {
-			ServiceResult result = service.createProd(prod);
-			if(ServiceResult.OK == result) {
-				viewName = "redirect:/prod/"+prod.getProdId();
-			}else {
-				model.addAttribute("message", "서버 오류, 쫌따 다시");
-				viewName = "prod/prodForm";
-			}
-		}else {
-			viewName = "prod/prodForm";
-		}
-		return viewName;
-	}
+    
+   @GetMapping
+   public String process(Model model) {
+      return "prod/prodForm";
+   }
+   
+   @PostMapping
+   public String insertProcess(
+      @Validated(InsertGroup.class) @ModelAttribute("prod") ProdVO prod //command Object 
+      , Errors errors
+      , Model model
+   ) throws IOException {
+      
+//       1. 저장
+     
+      
+      //검증 
+      String viewName = null;
+      if(!errors.hasErrors()) {
+         ServiceResult result = service.createProd(prod);
+         if(ServiceResult.OK == result) {
+            viewName = "redirect:/prod/"+prod.getProdId();
+         }else {
+            model.addAttribute("message", "서버 문제있음");
+            viewName = "prod/prodForm";
+         }
+      }else {
+         viewName = "prod/prodForm";
+      }
+      
+      return viewName;
+   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

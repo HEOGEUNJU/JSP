@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=WebStudy05_SpringBoard/src\/main\/java&lt;kr.or.ddit.board.service{BoardService.java[BoardService" modifiers="513" timestamp="1673588802661"/>
 <typeInfo handle="=team2_ALBA/src\/main\/java&lt;kr.or.ddit.alba.service{AlbaService.java[AlbaService" modifiers="513" timestamp="1673610029030"/>
-<typeInfo handle="=WebStudy05_SpringBoard/src\/main\/java&lt;kr.or.ddit.ui{PaginationRenderer.java[PaginationRenderer" modifiers="513" timestamp="1673931821612"/>
-<typeInfo handle="=WebStudy05_SpringBoard/src\/main\/java&lt;kr.or.ddit.ui{PaginationManager.java[PaginationManager" modifiers="513" timestamp="1673935212366"/>
+<typeInfo handle="=team2_ALBA/D:\/B_Util\/6.maven\/.m2\/repository\/org\/springframework\/spring-web\/4.3.25.RELEASE\/spring-web-4.3.25.RELEASE.jar&lt;org.springframework.web.filter(DelegatingFilterProxy.class[DelegatingFilterProxy" modifiers="33" timestamp="1673321025058"/>
+<typeInfo handle="=team2_ALBA/D:\/B_Util\/2.Java\/JDK1.8\/jre\/lib\/rt.jar&lt;java.security(Principal.class[Principal" modifiers="1537" timestamp="1673320209669"/>
+<typeInfo handle="=team2_ALBA/D:\/B_Util\/2.Java\/JDK1.8\/jre\/lib\/rt.jar&lt;sun.text.normalizer(ICUBinary$Authenticate.class[Authenticate" modifiers="1545" timestamp="1673320209669"/>
+<typeInfo handle="=WebStudy06_SpringSecurity/D:\/B_Util\/6.maven\/.m2\/repository\/org\/springframework\/security\/spring-security-core\/4.2.15.RELEASE\/spring-security-core-4.2.15.RELEASE.jar&lt;org.springframework.security.core.userdetails(User.class[User" modifiers="33" timestamp="1674019652144"/>
 </typeInfoHistroy>

@@ -5,6 +5,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @RootContextConfiguration
-public abstract class AbstractTestCase {
+public abstract  class AbstractTestCase {
 
 }
