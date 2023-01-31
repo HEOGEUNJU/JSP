@@ -10,9 +10,9 @@
 		<java-version>1.8</java-version>
 		<com.fasterxml.jackson-version>2.14.1</com.fasterxml.jackson-version>
 		<org.apache.logging.log4j-version>2.19.0</org.apache.logging.log4j-version>
+		<org.slf4j-version>1.7.25</org.slf4j-version>
 		<org.springframework-version>4.3.25.RELEASE</org.springframework-version>
 		<org.springframework.security-version>4.2.15.RELEASE</org.springframework.security-version>
-		<org.slf4j-version>1.7.25</org.slf4j-version>
 	</properties>
 	<build>
 		<plugins>
@@ -24,14 +24,6 @@
 					<source>${java-version}</source>
 					<target>${java-version}</target>
 				</configuration>
-			</plugin>
-			<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-    			<artifactId>maven-war-plugin</artifactId>
-    			<version>3.3.2</version>
-    			<configuration>
-    				<warSourceDirectory>webapp</warSourceDirectory>
-    			</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -56,47 +48,46 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-
 		<!-- Spring + DataBase + ORM -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-
-		<!-- Mybatis spring 연동 모듈 -->
+		<!-- mybatis spring 연동 모듈 - mapper scanner -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>2.0.7</version>
 		</dependency>
-		
+
 		<!-- 트랜잭션 관리용(AOP 지원) -->
 		<dependency>
-		    <groupId>org.aspectj</groupId>
-		    <artifactId>aspectjweaver</artifactId>
-		    <version>1.9.19</version>
-		    <scope>runtime</scope>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.19</version>
+			<scope>runtime</scope>
 		</dependency>
-		
+
 		<!-- 암호화 지원 -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${org.springframework.security-version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${org.springframework.security-version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+
+
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
 		
 		<!-- View Layer 지원용 -->
 		<dependency>
@@ -115,7 +106,6 @@
 			<artifactId>tiles-jsp</artifactId>
 			<version>3.0.8</version>
 		</dependency>
-		
 
 		<!-- oracle driver -->
 		<dependency>
@@ -123,7 +113,6 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.4</version>
 		</dependency>
-
 		<!-- connection pooling -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -136,7 +125,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<!-- sql mapper, data mapper -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -156,7 +144,7 @@
 			<version>1.10.0</version>
 		</dependency>
 
-		<!-- servlet spec 2.x 파일 업로드 지원 -->
+		<!-- serlvet spec 2.x 파일 업로드 지원 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -164,7 +152,7 @@
 		</dependency>
 
 
-		<!-- Relection 지원 -->
+		<!-- Reflection 지원 -->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
@@ -190,6 +178,7 @@
 			<version>1.18.24</version>
 			<scope>provided</scope>
 		</dependency>
+
 
 		<!-- Marshalling -->
 		<dependency>
@@ -245,3 +234,9 @@
 		</dependency>
 	</dependencies>
 </project>
+
+
+
+
+
+  

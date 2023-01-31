@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,8 +26,9 @@
 				url:url
 				, method:method
 				, data:data
-				, dataType:"html" //json으로 하면 리턴 타입은 언마샬링 script 타입이 온다.
+				, dataType:"HTML" //json으로 하면 리턴 타입은 언마샬링 script 타입이 온다.
 				, success:function(resp){
+					console.log(resp);
 					resultArea.html(resp);
 				}
 				, error:function(jqXHR,status,error){
